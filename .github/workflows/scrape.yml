@@ -1,0 +1,40 @@
+name: Daily Grant Scraper
+
+on:
+  schedule:
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml
+      - name: Run scraper
+        run: python scraper.py
+        env:
+          TZ: Asia/Kolkata
+      - name: Verify output
+        run: python3 -c 'import json; d=json.load(open("grants_live.json")); print("Total:", d["total"])'
+      - name: Commit and push
+        run: |
+          git config user.name "grantmap-bot"
+          git config user.email "grantmap-bot@noreply.github.com"
+          git add grants_live.json
+          if git diff --staged --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Auto-update grants_live.json"
+            git push
+          fi
