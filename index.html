@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grant Map – Health &amp; Pharmacy Research Funding 2026</title>
+<meta name="description" content="Research funding dashboard for JSS College of Pharmacy. Live ICMR and ANRF deadlines, international grants, eligibility criteria.">
+<style>
+:root{
+  /* Backgrounds */
+  --bg:#f0f5fb;
+  --sf:#ffffff;
+  --sf2:#e8f0f9;
+  --sf3:#dce8f5;
+  --bd:#c8d8eb;
+  --bd2:#9fb8d4;
+
+  /* Text */
+  --tx:#0f2040;
+  --mu:#34506e;
+  --mu2:#5570a0;
+
+  /* Status colours — rich, WCAG-AA contrast on white */
+  --gr:#15803d;   /* Open — deep emerald */
+  --ye:#b45309;   /* Closing — amber-brown */
+  --bl:#1e40af;   /* Upcoming — oxford blue */
+  --gy:#475569;   /* Closed — slate */
+  --re:#b91c1c;   /* Urgent — crimson */
+  --pu:#6d28d9;   /* Anticipated — violet */
+  --te:#0f766e;   /* Rolling — teal */
+  --or:#c2410c;   /* Closing accent */
+
+  /* Badge backgrounds (tinted, high contrast) */
+  --gr-d:#dcfce7;
+  --ye-d:#fef3c7;
+  --bl-d:#dbeafe;
+  --pu-d:#ede9fe;
+  --te-d:#ccfbf1;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Cambria','Georgia',serif;
+  background:
+    radial-gradient(ellipse at 0% 0%, #ddeeff 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 0%, #e8e0ff 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, #d0eaff 0%, transparent 60%),
+    linear-gradient(160deg, #f5f8fd 0%, #eaf0f9 40%, #f2f5fb 100%);
+  color:var(--tx);min-height:100vh;font-size:14px;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:#e4edf8;}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#7ba3cc,#4d7ab0);border-radius:3px;}
+
+/* ─── HEADER ─── */
+header{
+  background:
+    linear-gradient(135deg,
+      #0c1f4a 0%,
+      #1a3578 25%,
+      #1e4db0 55%,
+      #2558c8 75%,
+      #1a3ca8 100%);
+  padding:20px 24px 16px;
+  border-bottom:2px solid rgba(255,255,255,0.12);
+  position:sticky;top:0;z-index:100;text-align:center;
+  box-shadow:0 4px 24px rgba(14,30,80,0.25);
+}
+.h-top{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.h-title{display:flex;align-items:center;gap:8px;}
+.dot{width:8px;height:8px;background:var(--gr);border-radius:50%;flex-shrink:0;
+     box-shadow:0 0 6px var(--gr);animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 6px var(--gr);}50%{opacity:0.4;box-shadow:0 0 12px var(--gr);}}
+header h1{font-size:1.45rem;font-weight:700;letter-spacing:0.5px;color:#ffffff;text-shadow:0 2px 12px rgba(0,0,0,0.3);}
+.h-sub{color:#e0eeff;font-size:0.76rem;margin-top:4px;line-height:1.6;opacity:0.92;}
+.live-badge{font-size:0.68rem;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.45);color:#ffffff;padding:4px 12px;border-radius:20px;white-space:nowrap;backdrop-filter:blur(4px);letter-spacing:0.3px;}
+.legend{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;align-items:center;}
+.lb{padding:2px 9px;border-radius:20px;font-size:0.68rem;font-weight:600;cursor:default;}
+.lb-open{background:rgba(220,252,231,0.9);color:#14532d;border:1px solid #15803d;font-weight:700;}
+.lb-closing{background:rgba(254,243,199,0.9);color:#78350f;border:1px solid #b45309;font-weight:700;}
+.lb-upcoming{background:rgba(219,234,254,0.9);color:#1e3a8a;border:1px solid #1e40af;font-weight:700;}
+.lb-rolling{background:rgba(204,251,241,0.9);color:#0f4f4a;border:1px solid #0f766e;font-weight:700;}
+.lb-anticipated{background:rgba(237,233,254,0.9);color:#4c1d95;border:1px solid #6d28d9;font-weight:700;}
+.lb-closed{background:rgba(241,245,249,0.9);color:#475569;border:1px solid #94a3b8;font-weight:700;}
+.h-version{font-size:0.65rem;color:rgba(255,255,255,0.75);display:block;margin-top:4px;}
+
+/* ─── ALERT BANNER ─── */
+.urgent-banner{
+  background:linear-gradient(90deg,#fde8e8,#fff0f0,#fde8e8);
+  border-bottom:3px solid #b91c1c;padding:10px 24px;
+  font-size:0.78rem;color:#7f1d1d;display:flex;align-items:center;gap:8px;
+  box-shadow:0 2px 12px rgba(185,28,28,0.12);
+}
+.urgent-banner strong{color:#450a0a;font-weight:700;}
+
+/* ─── CONTROLS ─── */
+.ctrl{
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--bd);
+  padding:10px 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  position:sticky;top:88px;z-index:99;
+  box-shadow:0 4px 16px rgba(30,60,120,0.08);
+}
+.sw{position:relative;flex:1;min-width:180px;max-width:320px;}
+.sw input{
+  width:100%;padding:7px 12px 7px 32px;background:#f4f8fd;
+  border:1.5px solid var(--bd);border-radius:8px;color:var(--tx);
+  font-size:0.82rem;outline:none;transition:all 0.2s;font-family:'Cambria','Georgia',serif;
+}
+.sw input:focus{border-color:#3b82f6;background:#fff;box-shadow:0 0 0 3px rgba(59,130,246,0.12);}
+.sw::before{content:"⌕";position:absolute;left:9px;top:50%;transform:translateY(-50%);
+            font-size:1rem;color:var(--mu2);pointer-events:none;}
+.fg{display:flex;gap:4px;flex-wrap:wrap;}
+.fb{
+  padding:4px 10px;border:1px solid var(--bd);border-radius:6px;
+  background:transparent;color:var(--mu);cursor:pointer;font-size:0.73rem;
+  transition:all 0.15s;white-space:nowrap;
+}
+.fb:hover{background:var(--sf2);color:var(--tx);}
+.fb.on{color:#fff;border-color:transparent;}
+.fb[data-sf="all"].on,.fb[data-sf="open"].on{background:#166534;border-color:var(--gr);}
+.fb[data-sf="closing"].on{background:#92400e;border-color:var(--ye);}
+.fb[data-sf="upcoming"].on{background:#1e3a8a;border-color:var(--bl);}
+.fb[data-sf="rolling"].on{background:#134e4a;border-color:var(--te);}
+.fb[data-sf="anticipated"].on{background:#4c1d95;border-color:var(--pu);}
+.fb[data-sf="closed"].on{background:#1e293b;border-color:var(--gy);color:var(--gy);}
+.fb[data-tag].on{background:#1d4ed8;border-color:var(--bl);}
+.ctrl-sep{width:1px;height:28px;background:var(--bd);flex-shrink:0;}
+.stats{display:flex;gap:14px;margin-left:auto;flex-shrink:0;}
+.stat{text-align:center;line-height:1.2;}
+.stat-n{font-size:1.1rem;font-weight:700;}
+.stat-l{font-size:0.6rem;color:var(--mu);text-transform:uppercase;letter-spacing:0.4px;}
+.refresh-btn{
+  padding:4px 10px;background:var(--sf2);border:1px solid var(--bd);border-radius:6px;
+  color:var(--mu);cursor:pointer;font-size:0.72rem;transition:all 0.15s;
+}
+.refresh-btn:hover{background:var(--bd);color:var(--tx);}
+
+/* ─── MAIN ─── */
+.main{padding:16px 24px;}
+.sh{font-size:0.75rem;color:var(--mu);margin-bottom:14px;}
+.sh b{color:var(--tx);}
+
+/* ─── SECTION ─── */
+.cs{margin-bottom:28px;}
+.ch{
+  font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+  color:#1e3a8a;margin-bottom:10px;display:flex;align-items:center;gap:10px;
+  padding:6px 10px;background:linear-gradient(90deg,#eef4ff,transparent);
+  border-radius:6px;border-left:3px solid #3b82f6;
+}
+.ch::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--bd),transparent);}
+.ch-count{color:var(--bl);font-weight:700;}
+
+/* ─── GRID ─── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:12px;}
+
+/* ─── CARD ─── */
+.card{
+  background:#ffffff;
+  border:1px solid #cdd8ec;
+  border-radius:12px;
+  padding:15px 16px;position:relative;overflow:hidden;
+  transition:transform 0.18s cubic-bezier(.22,.68,0,1.2),border-color 0.18s,box-shadow 0.18s;
+  display:flex;flex-direction:column;gap:0;
+  box-shadow:0 2px 8px rgba(20,50,120,0.07),0 1px 2px rgba(20,50,120,0.04);
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(20,50,120,0.14),0 2px 8px rgba(20,50,120,0.08);border-color:#3b82f6;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.card.open::before{background:linear-gradient(90deg,#15803d,#22c55e,#15803d);}
+.card.closing::before{background:linear-gradient(90deg,#b45309,#f59e0b,#ea580c);}
+.card.upcoming::before{background:linear-gradient(90deg,#1e40af,#3b82f6,#1e40af);}
+.card.rolling::before{background:linear-gradient(90deg,#0f766e,#14b8a6,#0f766e);}
+.card.anticipated::before{background:linear-gradient(90deg,#6d28d9,#a855f7,#6d28d9);}
+.card.closed::before{background:linear-gradient(90deg,#94a3b8,#cbd5e1);}
+.card.closed{opacity:0.6;}
+.card:hover.closed{opacity:0.9;}
+
+/* URGENT GLOW */
+.card.closing.urgent{border-color:#fca5a5;box-shadow:0 0 0 2px #fca5a540,0 4px 20px rgba(185,28,28,0.15);}
+
+/* ─── CARD HEADER ─── */
+.ct{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;}
+.fn{font-size:0.68rem;font-weight:700;color:#1e40af;text-transform:uppercase;letter-spacing:0.8px;}
+.pl{padding:2px 8px;border-radius:10px;font-size:0.67rem;font-weight:600;white-space:nowrap;flex-shrink:0;}
+.pl-open{background:linear-gradient(135deg,#bbf7d0,#dcfce7);color:#14532d;border:1px solid #16a34a;font-weight:700;}
+.pl-closing{background:linear-gradient(135deg,#fde68a,#fef9c3);color:#78350f;border:1px solid #b45309;font-weight:700;}
+.pl-upcoming{background:linear-gradient(135deg,#bfdbfe,#dbeafe);color:#1e3a8a;border:1px solid #3b82f6;font-weight:700;}
+.pl-rolling{background:linear-gradient(135deg,#99f6e4,#ccfbf1);color:#0f4f4a;border:1px solid #0f766e;font-weight:700;}
+.pl-anticipated{background:linear-gradient(135deg,#ddd6fe,#ede9fe);color:#3b0764;border:1px solid #7c3aed;font-weight:700;}
+.pl-closed{background:#f1f5f9;color:#475569;border:1px solid #94a3b8;}
+
+.ttl{font-size:0.88rem;font-weight:600;line-height:1.4;margin-bottom:7px;color:var(--tx);}
+.card.closed .ttl{color:var(--mu);}
+
+/* ─── TAGS ─── */
+.tgs{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:8px;}
+.tg{padding:2px 7px;border-radius:5px;font-size:0.63rem;font-weight:600;background:#f0f5ff;color:#334e7a;border:1px solid #c8d8ec;}
+.tg-in{background:linear-gradient(135deg,#e0effe,#dbeafe);color:#1e3a8a;border-color:#60a5fa;}
+.tg-it{background:linear-gradient(135deg,#d1fae5,#dcfce7);color:#14532d;border-color:#4ade80;}
+.tg-ph{background:linear-gradient(135deg,#e8e0fe,#ede9fe);color:#3b0764;border-color:#a78bfa;}
+.tg-cl{background:linear-gradient(135deg,#b8f7fb,#cffafe);color:#155e75;border-color:#22d3ee;}
+.tg-bi{background:linear-gradient(135deg,#d5d8ff,#e0e7ff);color:#1e1b4b;border-color:#818cf8;}
+.tg-fe{background:linear-gradient(135deg,#fef3c7,#fef9ee);color:#44403c;border-color:#d9a95a;}
+
+/* ─── COUNTDOWN ─── */
+.cdb{display:flex;gap:4px;margin-bottom:9px;align-items:center;}
+.cu{background:linear-gradient(180deg,#f4f8fd,#e8f0fb);border:1px solid #b8cce4;border-radius:7px;padding:4px 8px;text-align:center;min-width:44px;box-shadow:inset 0 1px 2px rgba(255,255,255,0.8);}
+.cn{font-size:1rem;font-weight:700;display:block;line-height:1.2;letter-spacing:-0.5px;}
+.cl{font-size:0.54rem;color:var(--mu2);text-transform:uppercase;}
+.cd-sep{font-size:0.8rem;color:var(--mu2);margin-bottom:6px;}
+.cd-msg{font-size:0.72rem;padding:4px 10px;border-radius:5px;margin-bottom:9px;font-style:italic;}
+.cd-passed{color:#64748b;background:#f1f5f9;border:1px solid #e2e8f0;}
+.cd-rolling{color:#0d5e57;background:#ccfbf1;border:1px solid #0d9488;}
+.cd-upcoming{color:#1e3a8a;background:#dbeafe;border:1px solid #3b82f6;}
+.cd-anticipated{color:#4c1d95;background:#ede9fe;border:1px solid #7c3aed;}
+
+/* ─── META GRID ─── */
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:0.76rem;margin-bottom:9px;}
+.mi label{display:block;color:var(--mu2);font-size:0.63rem;margin-bottom:1px;text-transform:uppercase;letter-spacing:0.3px;}
+.mi span{color:var(--tx);font-weight:500;}
+.mi.full{grid-column:1/-1;}
+.mi .focus-text{color:#3d5470;font-size:0.73rem;line-height:1.4;}
+.dl-urgent{color:#b91c1c!important;font-weight:700;}
+.dl-closing{color:#b45309!important;font-weight:700;}
+.dl-open{color:#15803d!important;font-weight:700;}
+.dl-rolling{color:#0f766e!important;font-weight:600;}
+
+/* ─── ELIGIBILITY (collapsible) ─── */
+.elig-wrap{margin-bottom:9px;}
+.elig-toggle{
+  display:flex;align-items:center;gap:6px;cursor:pointer;
+  font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;
+  color:#1e3a8a;padding:6px 10px;
+  background:linear-gradient(135deg,#eef4ff,#f4f8ff);
+  border:1px solid #bdd1f0;
+  border-radius:7px;transition:all 0.15s;user-select:none;width:100%;font-family:'Cambria','Georgia',serif;
+}
+.elig-toggle:hover{background:linear-gradient(135deg,#e0ecff,#eef4ff);color:#0f2040;border-color:#7ba3cc;}
+.elig-toggle .arrow{margin-left:auto;transition:transform 0.2s;font-size:0.8rem;}
+.elig-toggle.open .arrow{transform:rotate(180deg);}
+.elig-body{
+  display:none;background:linear-gradient(180deg,#f4f8ff,#f8fafc);
+  border:1px solid #bdd1f0;border-top:none;
+  border-radius:0 0 7px 7px;padding:9px 12px;
+}
+.elig-body.open{display:block;}
+.elig-list{list-style:none;padding:0;}
+.elig-list li{font-size:0.74rem;color:var(--tx);padding:2px 0 2px 16px;position:relative;}
+.elig-list li::before{content:"✓";position:absolute;left:0;color:var(--gr);font-size:0.65rem;top:3px;}
+.elig-list li.cross{color:#991b1b;}
+.elig-list li.cross::before{content:"✗";color:var(--re);}
+.elig-list .sep{color:var(--mu2);font-size:0.63rem;padding:4px 0 2px;font-weight:700;text-transform:uppercase;}
+.elig-list .sep::before{content:none;}
+
+/* ─── CARD FOOTER ─── */
+.cf{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid #e2e8f0;margin-top:auto;}
+.src{font-size:0.63rem;color:var(--mu2);max-width:60%;line-height:1.3;}
+.al{
+  padding:6px 14px;
+  background:linear-gradient(135deg,#1e40af,#2563eb);
+  color:#fff;border-radius:7px;
+  font-size:0.73rem;text-decoration:none;
+  transition:all 0.18s;white-space:nowrap;
+  font-weight:700;font-family:'Cambria','Georgia',serif;
+  box-shadow:0 2px 8px rgba(30,64,175,0.3);
+  border:1px solid rgba(255,255,255,0.15);
+}
+.al:hover{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);box-shadow:0 4px 14px rgba(30,64,175,0.4);transform:translateY(-1px);}
+.al.dis{background:var(--gy);pointer-events:none;cursor:default;opacity:0.6;}
+.al.rolling{background:#ccfbf1;color:#0d5e57;border:1px solid #0d9488;}
+.al.rolling:hover{background:linear-gradient(135deg,#6ee7d8,#99f6e4);box-shadow:0 4px 12px rgba(15,118,110,0.3);}
+
+/* ─── LIVE BANNER ─── */
+.live-section{
+  background:linear-gradient(90deg,#f0fdf4,#eff6ff,#f0fdf4);
+  border:1px solid #86efac;border-radius:10px;padding:10px 16px;margin-bottom:14px;
+  font-size:0.73rem;color:#14532d;display:flex;align-items:center;gap:8px;
+  box-shadow:0 2px 10px rgba(21,128,61,0.08);
+}
+.live-dot{width:6px;height:6px;background:var(--gr);border-radius:50%;flex-shrink:0;animation:pulse 1.5s infinite;}
+.live-warn{background:linear-gradient(90deg,#fffbeb,#fff7ed,#fffbeb);border-color:#fbbf24;color:#78350f;box-shadow:0 2px 10px rgba(180,83,9,0.1);}
+
+/* ─── EMPTY ─── */
+.empty{text-align:center;padding:48px 24px;color:#3d5470;}
+.empty-icon{font-size:2.5rem;margin-bottom:10px;}
+
+/* ─── FOOTER ─── */
+footer{
+  text-align:center;padding:18px 24px;color:#34506e;font-size:0.68rem;
+  border-top:1px solid var(--bd);margin-top:12px;line-height:1.9;
+  background:linear-gradient(180deg,#eef4fb,#e4edf8);
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:640px){
+  header{padding:12px 16px 10px;}
+  header h1{font-size:1.05rem;}
+  .ctrl{padding:8px 16px;top:72px;}
+  .main{padding:12px 16px;}
+  .grid{grid-template-columns:1fr;}
+  .stats{gap:10px;}
+  .legend{gap:4px;}
+  .lb{padding:2px 7px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="h-top" style="justify-content:center;text-align:center;">
+    <div>
+      <div class="h-title" style="justify-content:center;">
+        <span class="dot"></span>
+        <h1>The Grant Map</h1>
+      </div>
+      <div class="h-sub">
+        Verified deadlines · Exact apply URLs · Detailed eligibility · Live countdown timers
+        &nbsp;|&nbsp; <strong style="color:#4ade80">Updated Apr 28, 2026</strong>
+        &nbsp;|&nbsp; Clinical Pharmacy &amp; Biomedical Focus · India + International<br>
+        <span style="color:rgba(255,255,255,0.85);font-size:0.7rem">Made by <strong style="color:#ffffff">Dr Sri Harsha Chalasani</strong>, <strong style="color:#ffffff">Dr M Ramesh</strong>, <strong style="color:#ffffff">Dr T M Pramod Kumar</strong> and <strong style="color:#ffffff">Shri Muthu</strong> · JSS College of Pharmacy / JSS AHER</span>
+      </div>
+    </div>
+    <span class="live-badge">⚡ v4 · 42 grants tracked</span>
+  </div>
+  <div class="legend" style="justify-content:center;">
+    <span class="lb lb-open">🟢 Open</span>
+    <span class="lb lb-closing">🟡 Closing &lt;30d</span>
+    <span class="lb lb-upcoming">🔵 Upcoming</span>
+    <span class="lb lb-rolling">🩵 Rolling</span>
+    <span class="lb lb-anticipated">🟣 Anticipated</span>
+    <span class="lb lb-closed">⚪ Closed</span>
+    <span class="h-version">v4 · All deadlines independently verified from official sources</span>
+  </div>
+</header>
+
+<!-- ═══ URGENT BANNER ═══ -->
+<div class="urgent-banner" id="urgentBanner" style="display:none">
+  <span>🚨</span>
+  <span id="urgentText"></span>
+</div>
+
+<!-- ═══ CONTROLS ═══ -->
+<div class="ctrl">
+  <div class="sw"><input type="text" id="srch" placeholder="Search funder, keyword, focus area…" oninput="render()"></div>
+  <div class="fg" id="sf-btns">
+    <button class="fb" data-sf="all" onclick="setSF(this)">All</button>
+    <button class="fb" data-sf="open" onclick="setSF(this)">🟢 Open</button>
+    <button class="fb" data-sf="closing" onclick="setSF(this)">🟡 Closing</button>
+    <button class="fb" data-sf="upcoming" onclick="setSF(this)">🔵 Upcoming</button>
+    <button class="fb" data-sf="rolling" onclick="setSF(this)">🩵 Rolling</button>
+    <button class="fb" data-sf="anticipated" onclick="setSF(this)">🟣 Anticipated</button>
+    <button class="fb" data-sf="closed" onclick="setSF(this)">⚪ Closed</button>
+  </div>
+  <div class="ctrl-sep"></div>
+  <div class="fg" id="tg-btns">
+    <button class="fb on" data-tag="Pharmacy" onclick="toggleTag(this)">💊 Pharmacy</button>
+    <button class="fb on" data-tag="Clinical" onclick="toggleTag(this)">🏥 Clinical</button>
+    <button class="fb" data-tag="India" onclick="toggleTag(this)">🇮🇳 India</button>
+    <button class="fb" data-tag="International" onclick="toggleTag(this)">🌍 International</button>
+    <button class="fb" data-tag="Bilateral" onclick="toggleTag(this)">🤝 Bilateral</button>
+    <button class="fb" data-tag="Fellowship" onclick="toggleTag(this)">🎓 Fellowship</button>
+    <button class="fb" data-tag="Industry" onclick="toggleTag(this)">🏭 Industry</button>
+    <button class="fb" data-tag="Rare" onclick="toggleTag(this)">🧬 Rare</button>
+  </div>
+  <div class="ctrl-sep"></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-n" style="color:var(--gr)" id="s-o">—</div><div class="stat-l">Open</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--ye)" id="s-c">—</div><div class="stat-l">Closing</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--bl)" id="s-t">—</div><div class="stat-l">Showing</div></div>
+  </div>
+  <button class="refresh-btn" onclick="render()" title="Refresh view">⟳ Refresh</button>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+  <div class="sh" id="sh"></div>
+  <div id="root"></div>
+  <div class="empty" id="empty" style="display:none">
+    <div class="empty-icon">🔍</div>
+    <div>No grants match your current filters.</div>
+    <div style="margin-top:6px;font-size:0.75rem">Try "All" status or clear tag filters.</div>
+  </div>
+</div>
+
+<footer>
+  All deadlines verified Apr 28, 2026 from official sources:
+  ICMR · ANRF · BIRAC · MRC/UKRI · CIHR · NHMRC · NIH Fogarty · WHO/TDR ·
+  Merck Group · Pfizer · Oxford-Harrington · Horizon Europe · EP PerMed · HFSP · Unitaid ·
+  Wellcome India Alliance · World Bank Pandemic Fund · CEFIPRA · ICSSR-DFG · ICMR-DFG<br>
+  ⚠ Always verify on official portals before applying. Deadlines may change without notice.<br>
+  <strong>The Grant Map</strong> · Made by <strong>Dr Sri Harsha Chalasani</strong>, <strong>Dr M Ramesh</strong>, <strong>Dr T M Pramod Kumar</strong> and <strong>Shri Muthu</strong> · JSS College of Pharmacy / JSS AHER
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════════════
+//  GRANT DATA  (38 grants, v4 – Apr 28, 2026)
+// ══════════════════════════════════════════════════════════
+const G = [
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🇮🇳  ANRF – LIVE/VERIFIED SCHEDULE 2026
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:1,funder:"ANRF (India)",cat:"🔄 Live – ANRF 2026",
+ title:"Advanced Research Grant (ARG) – Pre-Proposals & MATRICS 2026",
+ status:"closing",dl:"2026-05-08",dlLabel:"May 8, 2026",
+ funding:"Multi-year (amount TBD by ANRF)",cat2:"Research Grant",
+ tags:["India","Clinical","Health","Pharmacy"],
+ focus:"All areas of science including health, pharmacy, biomedical, and engineering. MATRICS track for theoretical/mathematical sciences. Interdisciplinary projects encouraged.",
+ url:"https://anrfonline.in",
+ source:"anrfonline.in / phdtalks.org verified Apr 2026",
+ elig:[
+   "Indian researchers at UGC/AICTE-recognised universities or institutions",
+   "PhD qualification mandatory for Principal Investigator",
+   "Permanent or regular (tenure-track) faculty position required",
+   "MATRICS track: theoretical & mathematical/computational sciences focus",
+   "Pharmacy, clinical research, biomedical science all eligible",
+   "Multiple PIs allowed (interdisciplinary teams preferred)"
+ ],
+ inelig:[
+   "Private college faculty without institutional recognition",
+   "Contract or temporary employees without permanent position",
+   "Projects without clear scientific/research component"
+ ]
+},
+{id:2,funder:"ANRF (India)",cat:"🔄 Live – ANRF 2026",
+ title:"National Science Chair (NSC) 2026",
+ status:"upcoming",dl:"2026-07-31",dlLabel:"Jul 31, 2026",
+ funding:"Chair + research support (amount TBD)",cat2:"Senior Chair / Honour",
+ tags:["India","Health","Fellowship"],
+ focus:"Distinguished senior scientists to lead national-level research programs across all disciplines. Includes biomedical, health, pharmacy and basic sciences.",
+ url:"https://anrfonline.in",
+ source:"anrfonline.in / phdtalks.org verified",
+ elig:[
+   "Eminent senior Indian scientists with internationally recognised track record",
+   "All disciplines including biomedical, pharmacy, and clinical research",
+   "Must demonstrate ability to lead a national research program",
+   "Typically for researchers aged 65+ or recently retired"
+ ],
+ inelig:[
+   "Early-career or mid-career researchers",
+   "Researchers without established international recognition"
+ ]
+},
+{id:3,funder:"ANRF (India)",cat:"🔄 Live – ANRF 2026",
+ title:"ARG Full Proposals – Second Window 2026",
+ status:"upcoming",dl:"2026-10-15",dlLabel:"Oct 15, 2026",
+ funding:"Multi-year (amount TBD by ANRF)",cat2:"Research Grant",
+ tags:["India","Clinical","Health","Pharmacy"],
+ focus:"Full proposals from shortlisted pre-proposal submissions, AND open second window. All health, pharmacy, biomedical, engineering disciplines eligible.",
+ url:"https://anrfonline.in",
+ source:"anrfonline.in / phdtalks.org schedule",
+ elig:[
+   "Indian researchers at recognised institutions",
+   "PhD mandatory for PI",
+   "Permanent position at eligible institution required",
+   "All scientific disciplines including pharmacy and clinical research"
+ ],
+ inelig:[
+   "Applicants without permanent position",
+   "Duplicate submissions from same PI in same cycle"
+ ]
+},
+{id:4,funder:"ANRF (India)",cat:"🔄 Live – ANRF 2026",
+ title:"Inclusivity Research Grant (IRG) 2026",
+ status:"upcoming",dl:"2026-11-03",dlLabel:"Nov 3, 2026",
+ funding:"Amount TBD per project",cat2:"Inclusivity Research",
+ tags:["India","Health","Clinical","Public Health"],
+ focus:"Research addressing underrepresented/marginalised communities. Includes health disparities, rural health, tribal health, disability, gender-specific health, pharmacy access.",
+ url:"https://anrfonline.in/ANRF/inrg_anrf?HomePage=New",
+ source:"anrfonline.in (verified Apr 2026)",
+ elig:[
+   "Indian researchers at recognised institutions (PhD/MD required for PI)",
+   "Projects must explicitly address marginalised or underrepresented groups",
+   "Health, social, engineering, or science focus",
+   "Pharmacy access, rural pharmacy, health disparities all eligible"
+ ],
+ inelig:[
+   "Projects without clear inclusivity/equity dimension",
+   "Non-Indian institutions as lead"
+ ]
+},
+{id:5,funder:"ANRF (India)",cat:"🔄 Live – ANRF 2026",
+ title:"PM Early Career Research Grant (PMECRG) 2026",
+ status:"upcoming",dl:"2026-12-02",dlLabel:"Dec 2, 2026",
+ funding:"Amount TBD (competitive early-career award)",cat2:"Early Career Grant",
+ tags:["India","Fellowship","Health","Clinical","Pharmacy"],
+ focus:"Early-career researchers across all disciplines. Pharmacy, clinical research, pharmacovigilance, drug safety, pharmacotherapy, neuroscience all eligible.",
+ url:"https://anrfonline.in",
+ source:"anrfonline.in / phdtalks.org 2026 schedule",
+ elig:[
+   "Early-career researchers within ~7 years of PhD completion",
+   "Must hold permanent/regular position at recognised Indian institution",
+   "Indian nationality required",
+   "All scientific disciplines including health, pharmacy, clinical research",
+   "Excellent publication/research track record expected"
+ ],
+ inelig:[
+   "Researchers beyond early-career stage (>7 years post-PhD)",
+   "Contract/temporary employees"
+ ]
+},
+{id:6,funder:"ANRF (India)",cat:"🔄 Live – ANRF 2026",
+ title:"Ramanujan Fellowship 2026",
+ status:"rolling",dl:null,dlLabel:"Rolling (decisions twice/year)",
+ funding:"₹1.35 Lakh/month + research grant",cat2:"Return Fellowship",
+ tags:["India","Fellowship","Health","Clinical","Pharmacy"],
+ focus:"Support outstanding Indian scientists working abroad to return to India. All disciplines including pharmacy, clinical research, neurology, drug safety.",
+ url:"https://anrfonline.in",
+ source:"anrfonline.in (rolling scheme)",
+ elig:[
+   "Indian researchers currently working outside India",
+   "Age ≤40 years at time of application",
+   "PhD from recognised institution required",
+   "Strong publication record in international journals",
+   "Must commit to working in India full-time for 5 years"
+ ],
+ inelig:[
+   "Researchers already working permanently in India",
+   "Researchers above 40 years of age"
+ ]
+},
+{id:7,funder:"ANRF (India)",cat:"🔄 Live – ANRF 2026",
+ title:"JC Bose National Fellowship 2026",
+ status:"closed",dl:"2026-02-10",dlLabel:"Feb 10, 2026 – CLOSED",
+ funding:"₹25,000/month + ₹15 Lakh/year research grant",cat2:"Senior Fellowship",
+ tags:["India","Fellowship","Health"],
+ focus:"Honour and support distinguished active scientists. Biomedical, pharmacy, and health sciences researchers eligible.",
+ url:"https://anrfonline.in",
+ source:"anrfonline.in / phdtalks.org (verified closed)",
+ elig:[
+   "Very senior Indian scientists with outstanding contributions",
+   "Must hold regular position at recognised Indian institution",
+   "All disciplines including biomedical, pharmacy"
+ ],
+ inelig:["Early or mid-career researchers"]
+},
+{id:8,funder:"ANRF (India)",cat:"🔄 Live – ANRF 2026",
+ title:"National Post-Doctoral Fellowship (N-PDF) 2026",
+ status:"closed",dl:"2026-02-17",dlLabel:"Feb 17, 2026 – CLOSED",
+ funding:"₹80,000/month + research grant",cat2:"Post-Doctoral Fellowship",
+ tags:["India","Fellowship","Health","Clinical","Pharmacy"],
+ focus:"Post-doctoral research in all areas of science. Pharmacology, clinical pharmacy, drug safety, neurology, health sciences all eligible.",
+ url:"https://anrfonline.in",
+ source:"anrfonline.in / phdtalks.org (verified closed Feb 17)",
+ elig:[
+   "Indian PhD holders within 2 years of degree award",
+   "PhD from recognised institution required",
+   "Research at top Indian academic institution",
+   "All disciplines including pharmacy and clinical research"
+ ],
+ inelig:[
+   "Researchers more than 2 years post-PhD",
+   "Those already in permanent positions"
+ ]
+},
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🇮🇳  ICMR – LIVE CALLS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:9,funder:"ICMR",cat:"🔄 Live – ICMR",
+ title:"EoI: Obesity Research in India – Multi-Centre Studies",
+ status:"closing",dl:"2026-04-30",dlLabel:"Apr 30, 2026 🚨 URGENT",
+ funding:"As per ICMR norms (project-based)",cat2:"Extramural Grant / EoI",
+ tags:["India","Clinical","Health","Pharmacy","Public Health"],
+ focus:"Expression of Interest for multi-centre obesity research. Pharmacotherapy of obesity, metabolic syndrome, lifestyle interventions, drug safety in obese patients eligible.",
+ url:"https://www.icmr.gov.in/call-for-proposals",
+ source:"icmr.gov.in (verified Apr 28, 2026 – 2 days left!)",
+ elig:[
+   "Indian medical researchers at ICMR-affiliated or recognised institutions",
+   "PI must hold MD/PhD or equivalent",
+   "Multi-centre proposals preferred; single-centre EoI accepted",
+   "Obesity, metabolic disease, diabetes, pharmacotherapy focus",
+   "Clinical pharmacists and pharmacy researchers eligible as Co-PI"
+ ],
+ inelig:[
+   "Proposals without Indian PI affiliation",
+   "Basic science-only proposals without clinical component"
+ ]
+},
+{id:9.5,funder:"ICMR",cat:"🔄 Live – ICMR",
+ title:"EoI: Multistate Implementation Research – Palliative Care Interventions",
+ status:"open",dl:"2026-05-28",dlLabel:"May 28, 2026 (1700 hrs)",
+ funding:"As per ICMR norms (multi-centre study)",cat2:"Implementation Research / EoI",
+ tags:["India","Clinical","Health","Pharmacy","Public Health"],
+ focus:"Multistate implementation research to improve coverage of high-quality palliative care. Clinical pharmacy in palliative medicine, pain management pharmacotherapy, opioid stewardship all directly relevant.",
+ url:"https://www.icmr.gov.in/call-for-proposals",
+ source:"icmr.gov.in (verified Apr 28, 2026 – May 28 deadline)",
+ elig:[
+   "Indian researchers at recognised health institutions",
+   "Multi-state/multicentre study design required",
+   "PI must hold MD/PhD or equivalent",
+   "Palliative care, pain management, or end-of-life clinical research focus",
+   "Clinical pharmacists eligible as Co-PI in pharmacotherapy-focused components"
+ ],
+ inelig:[
+   "Single-centre or single-state proposals",
+   "Non-clinical/basic science only proposals"
+ ]
+},
+{id:10,funder:"ICMR",cat:"🔄 Live – ICMR",
+ title:"Indo-Swiss One Health Joint Research Programme 2026",
+ status:"closing",dl:"2026-05-05",dlLabel:"May 5, 2026",
+ funding:"India: up to ₹2.5 Cr | Switzerland: CHF 400,000",cat2:"Bilateral Research",
+ tags:["India","International","Bilateral","Clinical","Health","Pharmacy"],
+ focus:"One Health: antimicrobial resistance (AMR), zoonotic diseases, ecosystem-human-animal interface. Pharmacy AMR stewardship, antibiotic use, drug resistance all directly eligible.",
+ url:"https://www.icmr.gov.in/call-for-proposals",
+ source:"icmr.gov.in (verified May 5, 2026 deadline)",
+ elig:[
+   "Min. 1 Indian lead (ICMR/DBT-affiliated institution) + 1 Swiss lead",
+   "Indian PI must hold PhD or MD degree",
+   "Collaborative One Health focus mandatory (animal-human-environment)",
+   "Both teams submit independent national applications",
+   "AMR, pharmacotherapy, infectious disease, zoonoses focus"
+ ],
+ inelig:[
+   "Single-country applications only",
+   "Industry-only teams without academic partner",
+   "Projects not aligned with One Health framework"
+ ]
+},
+{id:11,funder:"ICMR",cat:"🔄 Live – ICMR",
+ title:"HRD Scheme 2026-27: Long-Term & Short-Term Training Abroad",
+ status:"open",dl:"2026-06-30",dlLabel:"Jun 30, 2026",
+ funding:"As per ICMR HRD norms (travel + stipend)",cat2:"Fellowship / Training",
+ tags:["India","Fellowship","Health","Clinical"],
+ focus:"Short-term and long-term training abroad for ICMR scientists in advanced health research methodologies. Clinical trials, pharmacovigilance, advanced analytics training.",
+ url:"https://www.icmr.gov.in/call-for-proposals",
+ source:"icmr.gov.in (verified Jun 30, 2026 deadline – official site)",
+ elig:[
+   "ICMR scientists and staff of ICMR institutes",
+   "Researchers in ICMR-funded projects",
+   "Valid institutional recommendation from ICMR institute head required",
+   "Must identify host institution abroad with confirmed letter of acceptance"
+ ],
+ inelig:[
+   "Researchers not affiliated with ICMR institutes or funded projects",
+   "Applications without confirmed foreign host institution"
+ ]
+},
+{id:12,funder:"ICMR",cat:"🔄 Live – ICMR",
+ title:"HRD Scheme 2026-27: Call for Proposals (R.12019/07/2024-HR)",
+ status:"open",dl:"2026-05-30",dlLabel:"May 30, 2026",
+ funding:"As per scheme norms",cat2:"HRD / Training",
+ tags:["India","Fellowship","Health","Clinical"],
+ focus:"Human resource development in health research. Training grants for ICMR-linked researchers. Clinical research, pharmacoepidemiology, health systems research.",
+ url:"https://www.icmr.gov.in/call-for-proposals",
+ source:"icmr.gov.in (verified Apr 28, 2026)",
+ elig:[
+   "ICMR-affiliated researchers and scientists",
+   "Valid institutional endorsement required",
+   "Indian nationals only",
+   "Health research capacity building focus"
+ ],
+ inelig:[
+   "Researchers without ICMR affiliation or ICMR-funded project link"
+ ]
+},
+{id:13,funder:"ICMR",cat:"🔄 Live – ICMR",
+ title:"ANVESHAN Small Extramural Grants 2026 (Next Cycle Anticipated)",
+ status:"anticipated",dl:null,dlLabel:"Next cycle TBD (last: Mar 16, 2026 – CLOSED)",
+ funding:"₹10 Lakh – ₹2 Crore",cat2:"Extramural Research Grant",
+ tags:["India","Clinical","Pharmacy","Health"],
+ focus:"Priority disease research; multidisciplinary health projects up to 3 years. Pharmacotherapy, adverse drug reactions, clinical pharmacy, drug utilization all eligible.",
+ url:"https://epms.icmr.org.in",
+ source:"epms.icmr.org.in (last cycle closed Mar 16; next TBD)",
+ elig:[
+   "Indian medical/health researchers at recognised institutions",
+   "PI must hold PhD or MD/MS degree",
+   "Institutional endorsement required",
+   "Clinical pharmacy and pharmacovigilance researchers strongly eligible"
+ ],
+ inelig:["Researchers without PhD/MD qualification as PI"]
+},
+{id:14,funder:"ICMR",cat:"🔄 Live – ICMR",
+ title:"NISCHAYAK ANVESHAN Intermediate Extramural Grants (Next Cycle)",
+ status:"anticipated",dl:null,dlLabel:"Next cycle TBD (last: Mar 19, 2026 – CLOSED)",
+ funding:"Up to ₹8 Crore",cat2:"Translational Research Grant",
+ tags:["India","Clinical","Pharmacy","Health"],
+ focus:"Translation of innovations from prior ICMR projects. Multidisciplinary health research with demonstrable prior ICMR funding record. Drug safety, pharmacotherapy translation eligible.",
+ url:"https://epms.icmr.org.in",
+ source:"epms.icmr.org.in (last cycle closed Mar 19; monitor for next)",
+ elig:[
+   "Must have completed a prior ICMR-funded project (preferred)",
+   "PI at recognised Indian institution",
+   "Follow-on/translational focus required",
+   "Clinical pharmacists as Co-PI in health research teams"
+ ],
+ inelig:["First-time applicants without prior ICMR project track record (preferred)"]
+},
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🇮🇳  INDIA – NATIONAL (DBT/BIRAC, DST)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:15,funder:"DBT / BIRAC",cat:"🇮🇳 India – National",
+ title:"Bio-AI Joint Call: High Performance Biomanufacturing (BioE3 Policy)",
+ status:"open",dl:"2026-06-30",dlLabel:"Jun 30, 2026",
+ funding:"Amount TBD (competitive multi-year)",cat2:"Biotech / AI / Pharma",
+ tags:["India","Health","Pharmacy","Biotech","Industry"],
+ focus:"AI-driven biomanufacturing, drug synthesis, biosimilars, sustainable health product development. Pharmacy-aligned: drug delivery systems, biosimilar development, precision formulation.",
+ url:"https://birac.nic.in/cfp.php",
+ source:"birac.nic.in (verified Apr 2026)",
+ elig:[
+   "Indian institutions, national research labs, pharma startups",
+   "Biotech/pharma companies as co-applicants welcome",
+   "Must align with BioE3 biomanufacturing policy areas",
+   "Pharmacy, drug delivery, biosimilar research directly eligible",
+   "AI/computational component preferred"
+ ],
+ inelig:[
+   "Foreign-only applicants without Indian institutional partner",
+   "Projects outside BioE3 biomanufacturing policy scope"
+ ]
+},
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🤝  BILATERAL
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:16,funder:"ICSSR – DFG (Indo-German)",cat:"🤝 Bilateral",
+ title:"Indo-German Joint Research Projects – Social Health Sciences",
+ status:"rolling",dl:null,dlLabel:"Rolling 2026 (monitor icssr.org)",
+ funding:"TBD per project",cat2:"Bilateral Social/Health Research",
+ tags:["India","International","Bilateral","Health","Public Health","Clinical"],
+ focus:"Social determinants of health; interdisciplinary health-social research; public health policy. Health economics, pharmacoeconomics, health equity, drug policy eligible.",
+ url:"https://icssr.org",
+ source:"icssr.org (rolling scheme – verify current status)",
+ elig:[
+   "Indian social science/health researchers (PI at ICSSR-affiliated institution)",
+   "Must have German co-PI from DFG-eligible institution",
+   "Joint application from both sides required",
+   "Interdisciplinary health-social research strongly preferred"
+ ],
+ inelig:["Applications without German co-PI","Pure clinical/basic science without social science component"]
+},
+{id:17,funder:"ICMR – DFG (Indo-German)",cat:"🤝 Bilateral",
+ title:"Indo-German Joint Medical Research (Next Call – Theme TBD)",
+ status:"anticipated",dl:null,dlLabel:"TBD – monitor icmr.gov.in & dfg.de",
+ funding:"TBD (last call aligned with national budgets)",cat2:"Bilateral Medical Research",
+ tags:["India","International","Bilateral","Clinical","Pharmacy","Health"],
+ focus:"Medical sciences joint research. Last call theme was Toxicology (2022). New theme expected – pharmacovigilance, AMR, NCDs possible. Pharmacy/clinical research eligible.",
+ url:"https://www.icmr.gov.in/call-for-proposals",
+ source:"icmr.gov.in / dfg.de (next call anticipated; set alert on both sites)",
+ elig:[
+   "Indian researchers at ICMR-affiliated or recognised institutions",
+   "German co-PI at DFG-eligible institution required",
+   "Medical/health sciences focus; clinical pharmacy eligible",
+   "PhD or MD required for Indian PI"
+ ],
+ inelig:["Applications without confirmed German partner","Non-medical/health science projects"]
+},
+{id:18,funder:"CEFIPRA (Indo-French)",cat:"🤝 Bilateral",
+ title:"CSRP 2026 – Health & Life Sciences (Next Call Anticipated)",
+ status:"anticipated",dl:null,dlLabel:"~Early 2027 (last: Feb 28, 2026 – CLOSED)",
+ funding:"TBD (bilateral support from both sides)",cat2:"Bilateral Research",
+ tags:["India","International","Bilateral","Health","Clinical","Pharmacy"],
+ focus:"Health sciences India-France bilateral. Clinical and basic biomedical. Pharmacovigilance, clinical trials, drug metabolism, neuropharmacology all potentially eligible.",
+ url:"https://cefipra.org",
+ source:"cefipra.org (last cycle closed Feb 28, 2026; next cycle monitor)",
+ elig:[
+   "Indian PI at recognised institution",
+   "French co-PI at CNRS/INSERM/French University",
+   "Joint application required from both sides",
+   "Health/life sciences focus mandatory"
+ ],
+ inelig:["Single-country applications","Projects without clear health/life sciences alignment"]
+},
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🌍  INTERNATIONAL
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:19,funder:"MRC UK (UKRI)",cat:"🌍 International",
+ title:"MRC Research Grant – Applicant-Led (Rolling, No Closing Date)",
+ status:"rolling",dl:null,dlLabel:"No closing date (rolling from Apr 7, 2026)",
+ funding:"£400,000 – £2,000,000",cat2:"Research Grant",
+ tags:["International","Clinical","Health","Pharmacy"],
+ focus:"Causes & mechanisms of disease; diagnosis, treatment & prevention. Clinical pharmacology, drug safety, pharmacovigilance, cardiac pharmacotherapy all in MRC remit.",
+ url:"https://www.ukri.org/opportunity/mrc-research-grant-applicant-led/",
+ source:"ukri.org (verified: open with no closing date from Apr 7, 2026)",
+ elig:[
+   "Must be employed by eligible UK research organisation (UK lead required)",
+   "International co-investigators allowed (not as lead PI)",
+   "Three tracks: Research Grant, New Investigator, Partnership",
+   "Distinct from any submission within prior 12 months"
+ ],
+ inelig:[
+   "Researchers outside UK as lead/corresponding applicant",
+   "Duplicate submissions within 12-month window"
+ ]
+},
+{id:20,funder:"MRC UK (UKRI)",cat:"🌍 International",
+ title:"MRC New Investigator Research Grant – Applicant-Led",
+ status:"rolling",dl:null,dlLabel:"No closing date (rolling from Apr 7, 2026)",
+ funding:"Up to £400,000",cat2:"Early Career Research Grant",
+ tags:["International","Clinical","Health","Pharmacy","Fellowship"],
+ focus:"First independent research grants for early-career UK health researchers. Pharmacotherapy, clinical pharmacy, drug safety, pharmacoepidemiology all eligible under MRC remit.",
+ url:"https://www.ukri.org/opportunity/mrc-new-investigator-research-grant-applicant-led/",
+ source:"ukri.org (verified open rolling)",
+ elig:[
+   "Early-career researchers (typically within ~10 years post-PhD)",
+   "Must be employed at eligible UK institution",
+   "Must not hold or have held independent PI-level grant >£400k",
+   "Health/biomedical research focus within MRC remit"
+ ],
+ inelig:[
+   "Senior PIs with prior large independent grants",
+   "Non-UK researchers as lead applicant"
+ ]
+},
+{id:21,funder:"NIH Fogarty (USA)",cat:"🌍 International",
+ title:"Global Infectious Disease Research Training (D43)",
+ status:"open",dl:"2026-08-06",dlLabel:"Aug 6, 2026",
+ funding:"USD 250,000 – 1,500,000",cat2:"Research Training Grant",
+ tags:["International","Clinical","Pharmacy","Fellowship","Health"],
+ focus:"Infectious disease research training capacity in LMICs. Antimicrobial therapy, HIV/TB pharmacotherapy, malaria drug treatment, clinical trial capacity building all directly relevant.",
+ url:"https://www.fic.nih.gov/Programs/Pages/infectious-disease.aspx",
+ source:"fic.nih.gov (verified Aug 6, 2026 deadline)",
+ elig:[
+   "Universities/research institutions in LMICs (India fully eligible)",
+   "Must include US-based partner institution (required)",
+   "Training focus: HIV, TB, malaria, NTDs, emerging infections",
+   "Clinical pharmacy training components strongly supported",
+   "Must address infectious diseases endemic in the LMIC region"
+ ],
+ inelig:[
+   "High-income countries as the primary LMIC site",
+   "Projects without US institutional partner"
+ ]
+},
+{id:22,funder:"NIH Fogarty (USA)",cat:"🌍 International",
+ title:"Emerging Global Leader Award (K43) – LMIC Early-Career",
+ status:"open",dl:"2026-12-03",dlLabel:"Dec 3, 2026",
+ funding:"~USD 100,000 – 250,000/year for 5 years",cat2:"Career Development Award",
+ tags:["International","Fellowship","Health","Clinical","Pharmacy"],
+ focus:"Support early-career LMIC researchers toward scientific independence. Clinical pharmacy, pharmacovigilance, neurological disease pharmacotherapy, drug safety all eligible.",
+ url:"https://www.fic.nih.gov/Funding/Pages/Fogarty-Funding-Opps.aspx",
+ source:"fic.nih.gov (verified Dec 3, 2026 deadline)",
+ elig:[
+   "Early-career researchers based in LMICs (India fully eligible)",
+   "Must have confirmed US mentor and partner institution",
+   "PhD or MD/equivalent required",
+   "Must not hold or have held NIH R01 or equivalent independent grant",
+   "Clinical pharmacy and pharmacoepidemiology researchers strongly encouraged"
+ ],
+ inelig:[
+   "Senior investigators (>10 years post-doctorate)",
+   "Researchers without US mentor confirmation"
+ ]
+},
+{id:23,funder:"NIH Fogarty (USA)",cat:"🌍 International",
+ title:"LAUNCHing Leaders for U.S. Global Health Research (D43)",
+ status:"open",dl:"2026-05-25",dlLabel:"May 25, 2026",
+ funding:"TBD per training program",cat2:"Research Leadership Training",
+ tags:["International","Fellowship","Health","Clinical","Pharmacy"],
+ focus:"Global health research leadership training in LMICs. Multi-disciplinary health teams. Pharmacy researchers in global health, clinical trials, and implementation science eligible.",
+ url:"https://www.fic.nih.gov/Funding/Pages/Fogarty-Funding-Opps.aspx",
+ source:"fic.nih.gov (verified May 25, 2026 deadline)",
+ elig:[
+   "Universities in LMICs (India eligible)",
+   "US partner institution required",
+   "Focus on training health research leaders and building mentorship capacity",
+   "Multi-disciplinary health research teams preferred"
+ ],
+ inelig:["Single-country proposals without US partner","Programs not focused on leadership training"]
+},
+{id:24,funder:"CIHR – GACD (Canada)",cat:"🌍 International",
+ title:"Team Grant – GACD Implementation Science for NCDs (Stage 1)",
+ status:"open",dl:"2026-09-01",dlLabel:"Stage 1 ~Sep 2026",
+ funding:"Variable (multi-year team grant, CAD millions)",cat2:"Implementation Science",
+ tags:["International","Clinical","Health","Pharmacy","Public Health"],
+ focus:"NCD implementation science: cardiovascular disease, diabetes, cancer, mental health in LMICs. Pharmacotherapy implementation, medication adherence, drug utilization in LMICs.",
+ url:"https://cihr-irsc.gc.ca/e/54557.html",
+ source:"cihr-irsc.gc.ca (verified)",
+ elig:[
+   "Teams with LMIC partnerships mandatory",
+   "Canadian PI required as lead",
+   "Indian researchers welcome as co-investigators/LMIC implementation partners",
+   "Focus must be implementation science for NCDs",
+   "Pharmacy-led implementation of pharmacotherapy protocols eligible"
+ ],
+ inelig:[
+   "Teams without LMIC partner",
+   "Basic science-only projects without implementation component"
+ ]
+},
+{id:25,funder:"WHO / TDR",cat:"🌍 International",
+ title:"TDR Impact Grants – Infectious Diseases of Poverty",
+ status:"rolling",dl:null,dlLabel:"Rolling cycles (check tdr.who.int)",
+ funding:"Up to USD 20,000",cat2:"Implementation Research Grant",
+ tags:["International","Clinical","Pharmacy","Health","Public Health"],
+ focus:"Implementation research on infectious diseases of poverty in LMICs. Pharmacotherapy of NTDs, antibiotic stewardship, drug access, treatment adherence research.",
+ url:"https://tdr.who.int/grants",
+ source:"tdr.who.int (rolling – verify current open cycle)",
+ elig:[
+   "Researchers based in LMICs (India potentially eligible – check cycle-specific regional eligibility)",
+   "Must be affiliated with recognised institution",
+   "Research must address infectious diseases of poverty",
+   "Pharmacy researchers addressing drug access, treatment, adherence eligible"
+ ],
+ inelig:["High-income country researchers as PI","Projects not addressing disease burden in LMICs"]
+},
+{id:26,funder:"World Bank / Pandemic Fund",cat:"🌍 International",
+ title:"4th Call for Proposals – Pandemic Prevention, Preparedness & Response",
+ status:"open",dl:"2027-03-31",dlLabel:"Mar 31, 2027",
+ funding:"Multi-million USD (institutional grants)",cat2:"Pandemic Health",
+ tags:["International","Health","Pharmacy","Public Health"],
+ focus:"Pandemic PPR in LMICs; health system strengthening; pharmaceutical preparedness, essential medicine stockpiling, vaccine logistics, AMR pandemic risk all eligible.",
+ url:"https://thepandemicfund.org/call-for-proposals",
+ source:"thepandemicfund.org (4th call open, deadline Mar 31, 2027)",
+ elig:[
+   "Governments and eligible national/international institutions in LMICs",
+   "Must address pandemic PPR gaps",
+   "Multi-country proposals strongly preferred",
+   "Must align with Pandemic Fund investment framework",
+   "Health ministries and academic institutions as implementing partners"
+ ],
+ inelig:[
+   "For-profit private entities as lead applicant",
+   "High-income country-only proposals"
+ ]
+},
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🇪🇺  EUROPEAN
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:27,funder:"Horizon Europe",cat:"🇪🇺 European",
+ title:"HORIZON-HLTH-2026: Post-Infection Long-Term Conditions (DISEASE-03)",
+ status:"closed",dl:"2026-04-16",dlLabel:"Apr 16, 2026 – CLOSED",
+ funding:"EUR 6–8M per project",cat2:"Research Grant",
+ tags:["International","Clinical","Pharmacy","Health"],
+ focus:"Prevention, diagnosis & management of post-infection long-term conditions. Any pathogen. Drug management, pharmacotherapy protocols, medication burden in post-COVID conditions.",
+ url:"https://hadea.ec.europa.eu",
+ source:"hadea.ec.europa.eu (verified closed Apr 16, 2026)",
+ elig:[
+   "EU/Horizon-associated country institutions (lead)",
+   "Min. 3 independent legal entities from 3 different countries",
+   "At least 1 from EU Member State required",
+   "India eligible only as third-country partner (check specific call)"
+ ],
+ inelig:["Single-country applications","Non-associated third countries (incl. India) as lead"]
+},
+{id:28,funder:"EP PerMed (Horizon Europe)",cat:"🇪🇺 European",
+ title:"RITC2026 – Personalised Medicine (Cardiovascular/Metabolic/Kidney)",
+ status:"closed",dl:"2026-02-10",dlLabel:"Feb 10, 2026 – CLOSED (Stage 1)",
+ funding:"EUR 14.8M+ total pool",cat2:"Personalised Medicine",
+ tags:["International","Clinical","Pharmacy","Health"],
+ focus:"Multimodal data for personalised medicine in cardiovascular, metabolic & kidney disease. Personalised pharmacotherapy, precision dosing, cardiac pharmacology all aligned.",
+ url:"https://www.eppermed.eu/funding-projects/calls/ritc2026/",
+ source:"eppermed.eu (verified Stage 1 closed Feb 10)",
+ elig:[
+   "Multi-national research consortia from EP PerMed's 19 funding countries",
+   "Each partner must be eligible under their national funding agency",
+   "Minimum 3 countries represented",
+   "India: not directly listed in EP PerMed member countries"
+ ],
+ inelig:["Countries outside EP PerMed member list","Single-country proposals"]
+},
+{id:29,funder:"HFSP",cat:"🇪🇺 European",
+ title:"HFSP International Research Grants 2027 (Pre-Proposals ~Oct 2026)",
+ status:"anticipated",dl:"2026-10-01",dlLabel:"~Oct 2026 pre-proposals",
+ funding:"~USD 450,000/3 years (Young Investigator); ~USD 900,000/3 years (Research Grant)",cat2:"Interdisciplinary Research",
+ tags:["International","Health","Clinical","Bilateral"],
+ focus:"Genuinely interdisciplinary life sciences research by international teams. Neuropharmacology, systems pharmacology, computational drug science, neuroscience-pharmacy teams eligible.",
+ url:"https://www.hfsp.org",
+ source:"hfsp.org (2027 cycle pre-proposals expected Oct 2026)",
+ elig:[
+   "International research teams from min. 2 different countries",
+   "Indian PIs eligible as team members (not always as lead)",
+   "Team leaders should be from HFSP member countries",
+   "Genuinely interdisciplinary projects required (biology + other disciplines)"
+ ],
+ inelig:["Single-country teams","Standard clinical/translational projects without interdisciplinary novelty"]
+},
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🏭  PHARMA INDUSTRY
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:30,funder:"Merck Group (Germany)",cat:"🏭 Pharma Industry",
+ title:"Merck Research Grants 2026 – Open Innovation (Neuroinflammation & AI)",
+ status:"open",dl:"2026-08-31",dlLabel:"Aug 31, 2026",
+ funding:"EUR 100k–250k/year for 2–3 years (4 grants available in 2026)",cat2:"Industry Research Grant",
+ tags:["International","Clinical","Pharmacy","Industry","Health"],
+ focus:"2026 focus: (1) In-vitro models for novel neuroinflammatory disease therapies – EUR 250k/yr × 2yr (pharmacy-relevant: CNS drug discovery). (2) AI in cell culture media & bioprocess development. (3) Condensate-based cell-free screening for protein-protein interactions. Deep-dive workshop Nov/Dec 2026.",
+ url:"https://www.emdgroup.com/en/research/open-innovation/research-grants.html",
+ source:"emdgroup.com/research-grants (verified: Aug 31, 2026 deadline confirmed)",
+ elig:[
+   "Researchers globally, including India",
+   "Academic and industry applicants eligible",
+   "Focus on healthcare, life sciences, and performance materials",
+   "Pharmacy innovation, drug discovery, clinical pharmacology eligible"
+ ],
+ inelig:["Projects outside Merck's defined thematic areas"]
+},
+{id:31,funder:"Pfizer Global Medical Grants",cat:"🏭 Pharma Industry",
+ title:"Pfizer Independent Medical Education & Competitive Grants 2026",
+ status:"rolling",dl:null,dlLabel:"Rolling (quarterly deadlines)",
+ funding:"Varies (USD 50,000 – 500,000 typical range)",cat2:"Industry Research / Education Grant",
+ tags:["International","Clinical","Pharmacy","Industry","Health","Fellowship"],
+ focus:"Medical education, disease-area research aligned with Pfizer therapeutic areas: cardiology, oncology, rare disease, anti-infectives, CNS. Clinical pharmacy education grants available.",
+ url:"https://www.pfizer.com/grants",
+ source:"pfizer.com/grants (rolling – quarterly submission windows)",
+ elig:[
+   "Non-profit academic, hospital and medical institutions globally (India eligible)",
+   "Must align with Pfizer's defined therapeutic priorities",
+   "Pharmacy schools, clinical research programs eligible",
+   "Independent medical education proposals accepted",
+   "No conflict of interest with Pfizer commercial activities"
+ ],
+ inelig:[
+   "For-profit entities",
+   "Proposals outside Pfizer's therapeutic focus areas",
+   "Advocacy/lobbying activities"
+ ]
+},
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🧬  RARE / NICHE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:32,funder:"DBT / Wellcome India Alliance",cat:"🧬 Rare / Niche",
+ title:"India Alliance Fellowships – Phase III (Early/Intermediate/Senior)",
+ status:"anticipated",dl:null,dlLabel:"Next cycle TBD (last: ~Mar 2026)",
+ funding:"₹ crores (varies: Early ₹1.5Cr; Intermediate ₹2Cr; Senior ₹3Cr)",cat2:"Research Fellowship",
+ tags:["India","International","Clinical","Fellowship","Health","Pharmacy","Rare"],
+ focus:"Basic biomedical, clinical, and public health research. ALL career stages. Pharmacotherapy, neurology, drug safety, clinical trials, pharmacovigilance all in remit.",
+ url:"https://www.indiaalliance.org",
+ source:"indiaalliance.org (monitor for next cycle announcement)",
+ elig:[
+   "Indian biomedical researchers (all career stages)",
+   "Early Fellowship: ≤3 years post-PhD; Intermediate: ≤7 years post-PhD",
+   "Senior: established PIs with independent research track record",
+   "Must propose independent research program at Indian institution",
+   "Indian national or based in India (citizens/PIOs)",
+   "Clinical pharmacy, pharmacoepidemiology, drug safety all eligible"
+ ],
+ inelig:[
+   "Researchers with full professiorial salary that precludes fellowship funding",
+   "Non-biomedical projects",
+   "Researchers currently holding another major fellowship"
+ ]
+},
+{id:33,funder:"Oxford-Harrington Rare Disease Centre",cat:"🧬 Rare / Niche",
+ title:"Oxford-Harrington Rare Disease Catalyst Grants 2026",
+ status:"closed",dl:"2026-03-09",dlLabel:"Mar 9, 2026 – CLOSED",
+ funding:"GBP 200,000 – 700,000",cat2:"Rare Disease Translational",
+ tags:["International","Clinical","Pharmacy","Health","Rare"],
+ focus:"Rare disease therapeutics: neurology, rare cancers, developmental & metabolic disorders. Drug repurposing, pharmacotherapy of rare neurological diseases, orphan drugs.",
+ url:"https://www.oxfordharrington.org/funding/overview",
+ source:"oxfordharrington.org (verified: closed Mar 9, 2026; next cycle Nov 2026 awards)",
+ elig:[
+   "Academic researchers at UK, US or Canadian institutions",
+   "Must have rare disease discovery at translational/pre-clinical stage",
+   "MD or PhD required",
+   "Notification of 2026 awards: November 2026"
+ ],
+ inelig:[
+   "Biotech/pharma companies as lead applicant",
+   "Researchers outside UK/US/Canada as lead"
+ ]
+},
+{id:34,funder:"Unitaid",cat:"🧬 Rare / Niche",
+ title:"Heat Stability of Health Products – Climate & Pharmacy Resilience",
+ status:"anticipated",dl:null,dlLabel:"Next cycle TBD (last call: Jan 2026)",
+ funding:"~USD 10,000,000 per initiative",cat2:"Access & Pharmaceutical Supply",
+ tags:["International","Health","Pharmacy","Public Health","Rare"],
+ focus:"Heat stability of diagnostics & therapeutics in climate-stressed LMICs. Pharmaceutical supply chain pharmacy, cold chain solutions, drug stability research directly relevant.",
+ url:"https://unitaid.org/calls-for-proposals/",
+ source:"unitaid.org (monitor for next call announcement)",
+ elig:[
+   "Health organisations, consortia in LMICs or with LMIC partners",
+   "Must address pharmaceutical/diagnostic supply chain in heat-stressed settings",
+   "Demonstrated access market expertise required",
+   "Pharmacy researchers on stability, formulation, distribution eligible as partners"
+ ],
+ inelig:[
+   "Academic-only proposals without implementation partner",
+   "Projects without LMIC pharmaceutical access component"
+ ]
+},
+{id:35,funder:"EDCTP3 (Europe-Africa)",cat:"🧬 Rare / Niche",
+ title:"EDCTP3 Clinical Trials – Poverty-Related Diseases",
+ status:"anticipated",dl:null,dlLabel:"Next call TBD (EDCTP3 ongoing 2024-2034)",
+ funding:"EUR millions (trial-dependent)",cat2:"Clinical Trial Funding",
+ tags:["International","Clinical","Pharmacy","Health","Rare"],
+ focus:"Clinical trials for poverty-related and neglected infectious diseases in sub-Saharan Africa. Drug trial pharmacology, clinical pharmacokinetics, pharmacotherapy in resource-limited settings.",
+ url:"https://www.edctp.org/calls/",
+ source:"edctp.org (EDCTP3 2024-2034 programme; monitor for specific calls)",
+ elig:[
+   "Research institutions with African partners (mandatory)",
+   "European institutions as lead (Horizon-associated country eligible)",
+   "Must involve clinical trial or validation study in sub-Saharan Africa",
+   "Clinical pharmacy and pharmacology components strongly supported"
+ ],
+ inelig:[
+   "Projects without African partner institution",
+   "Basic science without clinical/translational component"
+ ]
+},
+{id:36,funder:"Helse Sør-Øst (Norway)",cat:"🧬 Rare / Niche",
+ title:"Helse Sør-Øst Research Grants – International Collaboration",
+ status:"anticipated",dl:null,dlLabel:"Anticipated annually (check helse-sorost.no)",
+ funding:"NOK millions (varies)",cat2:"International Research Grant",
+ tags:["International","Clinical","Health","Pharmacy","Bilateral"],
+ focus:"Clinical research, translational medicine, clinical pharmacology. Norway-India collaborations eligible. Pharmacotherapy, drug safety, clinical trials in neurology/cardiology.",
+ url:"https://www.helse-sorost.no/forskning",
+ source:"helse-sorost.no (monitor annually; collaboration with Norwegian hospital required)",
+ elig:[
+   "Researchers in collaboration with Helse Sør-Øst health enterprises",
+   "International co-investigators (India eligible as partner)",
+   "Clinical research focus required",
+   "Must have identified Norwegian hospital/research partner"
+ ],
+ inelig:["Applications without Norwegian health enterprise partner"]
+},
+{id:37,funder:"EP PerMed (Horizon Europe)",cat:"🧬 Rare / Niche",
+ title:"EP PerMed Future Call – Personalised Medicine 2027 (Anticipated)",
+ status:"anticipated",dl:null,dlLabel:"Anticipated late 2026 / early 2027",
+ funding:"EUR 14M+ total pool (multi-country)",cat2:"Personalised Medicine",
+ tags:["International","Clinical","Pharmacy","Health"],
+ focus:"Next call of the EP PerMed personalised medicine ERA-NET. Precision pharmacotherapy, pharmacogenomics, personalised dosing, biomarker-guided drug therapy all aligned.",
+ url:"https://www.eppermed.eu",
+ source:"eppermed.eu (RITC2026 closed; next call anticipated)",
+ elig:[
+   "Multi-national research consortia from EP PerMed member countries",
+   "Min. 3 countries required; each partner eligible in national agency",
+   "Indian institutions as paid third-country partners (check specific call rules)"
+ ],
+ inelig:["Single-country proposals"]
+},
+{id:38,funder:"CIHR (Canada)",cat:"🌍 International",
+ title:"Fall 2026 Project Grant Competition (Upcoming)",
+ status:"upcoming",dl:"2026-10-15",dlLabel:"~Oct 2026 (exact date TBD)",
+ funding:"Variable CAD (multi-year, highly competitive)",cat2:"Research Grant",
+ tags:["International","Clinical","Health","Pharmacy","Public Health"],
+ focus:"Fundamental/applied health research; clinical trials; health systems; outcomes research. Clinical pharmacy, pharmacoepidemiology, drug safety, health economics all eligible.",
+ url:"https://cihr-irsc.gc.ca/e/49051.html",
+ source:"cihr-irsc.gc.ca (Spring 2026 closed; Fall 2026 cycle anticipated)",
+ elig:[
+   "Canadian health researchers as Nominated PI",
+   "International co-investigators allowed (India eligible as co-PI)",
+   "Must be affiliated with eligible Canadian institution as lead",
+   "Pharmacy researchers welcome as Co-Investigators"
+ ],
+ inelig:["Non-Canadian researchers as Nominated PI lead"]
+}
+
+
+,
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 🌍  GATES FOUNDATION + ADB NOTE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:39,funder:"Gates Foundation / Grand Challenges",cat:"🌍 International",
+ title:"Grand Challenges Explorations – Fall 2026 Round",
+ status:"anticipated",dl:null,dlLabel:"Fall 2026 anticipated (Spring closed Apr 28, 2026)",
+ funding:"USD 100,000 for 18 months (Phase I) · up to USD 1M follow-on (Phase II)",
+ cat2:"Innovation Grant – Global Health",
+ tags:["International","Clinical","Pharmacy","Health","Public Health"],
+ focus:"High-risk, high-reward global health innovations. Two-page application, no preliminary data required. Past topics: diagnostics, drug delivery, AMR, nutrition, infectious disease. Pharmacy innovation and novel drug delivery directly eligible. Rounds open Spring & Fall each year.",
+ url:"https://gcgh.grandchallenges.org/grant-opportunities",
+ source:"gcgh.grandchallenges.org (Spring 2026 closed Apr 28 – Fall 2026 anticipated)",
+ elig:[
+   "Researchers globally including India – all countries eligible",
+   "Individuals, institutions, startups, and NGOs all eligible",
+   "Two-page application only – no preliminary data required",
+   "Fall round typically opens Sep–Oct each year – sign up for alerts"
+ ],
+ inelig:[
+   "Incremental or conventional research approaches (must be genuinely high-risk/high-reward)",
+   "Projects outside Gates Foundation disease and development priorities"
+ ]
+},
+{id:40,funder:"Grand Challenges India (DBT / BIRAC / Gates / Wellcome)",cat:"🇮🇳 India – National",
+ title:"Grand Challenges India – Next Round (Anticipated 2026)",
+ status:"anticipated",dl:null,dlLabel:"Next India round TBD – monitor birac.nic.in",
+ funding:"USD 100,000 (Phase I) · up to USD 1M (Phase II)",
+ cat2:"Innovation Grant – India",
+ tags:["India","International","Clinical","Pharmacy","Health","Bilateral"],
+ focus:"Indian-specific Grand Challenges rounds co-funded by DBT, BIRAC, Gates Foundation, and Wellcome Trust. Health innovations, diagnostics, drug delivery, infectious disease. Indian pharmacy researchers directly eligible.",
+ url:"https://birac.nic.in/cfp.php",
+ source:"birac.nic.in / gcgh.grandchallenges.org (Grand Challenges India – monitor both)",
+ elig:[
+   "Indian researchers at recognised institutions (India-specific round)",
+   "Individuals, startups, academic institutions all eligible",
+   "Two-page application – no preliminary data required",
+   "Pharmacy innovation, affordable diagnostics, drug delivery directly eligible"
+ ],
+ inelig:[
+   "Projects outside DBT / Gates Foundation health innovation priorities",
+   "Incremental research without genuine novelty"
+ ]
+},
+{id:41,funder:"ADB – Information Only",cat:"🌍 International",
+ title:"⚠ Asian Development Bank – Sovereign Grants Only (Not for Academic Researchers)",
+ status:"anticipated",dl:null,dlLabel:"N/A – ADB grants go to governments, not researchers",
+ funding:"N/A for individual researchers",
+ cat2:"ℹ️ Information Note",
+ tags:["International","Public Health"],
+ focus:"ADB provides grants to governments of developing member countries, NOT directly to academic researchers or universities. If you want to participate in ADB-funded health projects, the entry point is through India's Ministry of Health or state health departments that receive ADB financing – not through a direct application from JSS.",
+ url:"https://www.adb.org/what-we-do/funds",
+ source:"adb.org (verified – sovereign grants only, not open to direct academic applications)",
+ elig:[
+   "Government ministries and sovereign bodies of ADB developing member countries only",
+   "Academic institutions may be sub-contracted by governments for specific ADB project components"
+ ],
+ inelig:[
+   "Individual academic researchers applying directly",
+   "Universities and pharmacy schools as lead applicants",
+   "JSS College of Pharmacy cannot apply directly to ADB"
+ ]
+}
+
+]; // end G
+
+// ══════════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════════
+let sf = 'all';
+let activeTags = new Set(['Pharmacy', 'Clinical']); // DEFAULT: Pharmacy + Clinical
+
+// ══════════════════════════════════════════════════════════
+//  URGENT BANNER
+// ══════════════════════════════════════════════════════════
+function checkUrgent() {
+  const now = new Date();
+  const urgent = G.filter(g => {
+    if (!g.dl || g.status === 'closed') return false;
+    const end = new Date(g.dl + 'T23:59:59+05:30');
+    const days = (end - now) / 86400000;
+    return days >= 0 && days <= 3;
+  });
+  if (urgent.length) {
+    const banner = document.getElementById('urgentBanner');
+    const text = document.getElementById('urgentText');
+    banner.style.display = 'flex';
+    text.innerHTML = '⚠ <strong>DEADLINE IN ≤3 DAYS:</strong> ' +
+      urgent.map(g => `<strong>${g.funder}</strong> – ${g.dlLabel}`).join(' &nbsp;|&nbsp; ');
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+//  FILTER CONTROLS
+// ══════════════════════════════════════════════════════════
+function setSF(btn) {
+  sf = btn.dataset.sf;
+  document.querySelectorAll('#sf-btns .fb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  render();
+}
+
+function toggleTag(btn) {
+  const t = btn.dataset.tag;
+  if (activeTags.has(t)) {
+    activeTags.delete(t);
+    btn.classList.remove('on');
+  } else {
+    activeTags.add(t);
+    btn.classList.add('on');
+  }
+  render();
+}
+
+// ══════════════════════════════════════════════════════════
+//  LABEL HELPERS
+// ══════════════════════════════════════════════════════════
+function statusPillClass(s) {
+  return `pl-${s}`;
+}
+function statusLabel(s) {
+  return {
+    open:'🟢 Open',closing:'🟡 Closing Soon',upcoming:'🔵 Upcoming',
+    rolling:'🩵 Rolling',anticipated:'🟣 Anticipated',closed:'⚪ Closed'
+  }[s] || s;
+}
+function tagClass(t) {
+  if (t==='India') return 'tg-in';
+  if (t==='International') return 'tg-it';
+  if (t==='Pharmacy') return 'tg-ph';
+  if (t==='Clinical') return 'tg-cl';
+  if (t==='Bilateral') return 'tg-bi';
+  if (t==='Fellowship') return 'tg-fe';
+  return '';
+}
+function dlColorClass(s) {
+  if (s==='closing') {
+    return 'dl-closing';
+  }
+  if (s==='open') return 'dl-open';
+  if (s==='rolling') return 'dl-rolling';
+  return '';
+}
+
+// ══════════════════════════════════════════════════════════
+//  COUNTDOWN HTML
+// ══════════════════════════════════════════════════════════
+function cdHTML(g) {
+  if (g.status === 'closed') {
+    return `<div class="cd-msg cd-passed">⏱ Deadline passed</div>`;
+  }
+  if (g.status === 'rolling') {
+    return `<div class="cd-msg cd-rolling">🔄 Continuously open – submit any time</div>`;
+  }
+  if (g.status === 'upcoming') {
+    return `<div class="cd-msg cd-upcoming">📅 Opens later in 2026 – set reminder</div>`;
+  }
+  if (g.status === 'anticipated') {
+    return `<div class="cd-msg cd-anticipated">🔮 Call anticipated – monitor funder portal</div>`;
+  }
+  if (!g.dl) return '';
+  // open or closing — show live countdown
+  const now = new Date();
+  const end = new Date(g.dl + 'T23:59:59');
+  const diff = end - now;
+  if (diff <= 0) return `<div class="cd-msg cd-passed">⏱ Deadline passed</div>`;
+  const d = Math.floor(diff/86400000);
+  const urgent = d < 3 ? ' urgent' : '';
+  return `<div class="cdb${urgent}" id="cd${g.id}">
+    <div class="cu"><span class="cn" id="cd${g.id}d">—</span><span class="cl">Days</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cu"><span class="cn" id="cd${g.id}h">—</span><span class="cl">Hrs</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cu"><span class="cn" id="cd${g.id}m">—</span><span class="cl">Min</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cu"><span class="cn" id="cd${g.id}s">—</span><span class="cl">Sec</span></div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+//  ELIGIBILITY HTML (collapsible)
+// ══════════════════════════════════════════════════════════
+let eligOpen = {};
+function toggleElig(id) {
+  eligOpen[id] = !eligOpen[id];
+  const toggle = document.getElementById(`et${id}`);
+  const body   = document.getElementById(`eb${id}`);
+  if (toggle && body) {
+    toggle.classList.toggle('open', eligOpen[id]);
+    body.classList.toggle('open', eligOpen[id]);
+  }
+}
+
+function eligHTML(g) {
+  const items = g.elig.map(e => `<li>${e}</li>`).join('');
+  const inelig = g.inelig && g.inelig.length
+    ? `<li class="sep">✗ Does not qualify</li>${g.inelig.map(e=>`<li class="cross">${e}</li>`).join('')}`
+    : '';
+  const isOpen = eligOpen[g.id] ? 'open' : '';
+  return `<div class="elig-wrap">
+    <div class="elig-toggle ${isOpen}" id="et${g.id}" onclick="toggleElig(${g.id})">
+      <span>✅ Eligibility Criteria</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="elig-body ${isOpen}" id="eb${g.id}">
+      <ul class="elig-list">${items}${inelig}</ul>
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+//  CARD HTML
+// ══════════════════════════════════════════════════════════
+function cardHTML(g) {
+  const dlc = dlColorClass(g.status);
+  const isUrgent = g.status==='closing' && g.dl && ((new Date(g.dl+'T23:59:59')-new Date())/86400000 < 3);
+  return `<div class="card ${g.status}${isUrgent?' urgent':''}">
+    <div class="ct">
+      <div class="fn">${g.funder}</div>
+      <span class="pl ${statusPillClass(g.status)}">${statusLabel(g.status)}</span>
+    </div>
+    <div class="ttl">${g.title}</div>
+    <div class="tgs">
+      ${g.tags.map(t=>`<span class="tg ${tagClass(t)}">${t}</span>`).join('')}
+      <span class="tg" style="background:#1e3a5f;color:#93c5fd;border-color:#3b82f660;font-style:italic">${g.cat2}</span>
+    </div>
+    ${cdHTML(g)}
+    <div class="mg">
+      <div class="mi"><label>⏰ Deadline</label><span class="${dlc}">${g.dlLabel}</span></div>
+      <div class="mi"><label>💰 Funding</label><span>${g.funding}</span></div>
+      <div class="mi full"><label>🎯 Focus Area</label><span class="focus-text">${g.focus}</span></div>
+    </div>
+    ${eligHTML(g)}
+    <div class="cf">
+      <span class="src">📌 ${g.source}</span>
+      ${g.status !== 'closed'
+        ? `<a class="al ${g.status==='rolling'?'rolling':''}" href="${g.url}" target="_blank" rel="noopener">Apply →</a>`
+        : `<span class="al dis">Closed</span>`}
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+//  RENDER
+// ══════════════════════════════════════════════════════════
+function render() {
+  const q = document.getElementById('srch').value.toLowerCase().trim();
+
+  let list = G.filter(g => {
+    // status filter
+    const ms = sf === 'all' || g.status === sf;
+    // tag filter (OR logic – show if ANY active tag matches)
+    const mt = activeTags.size === 0 || g.tags.some(t => activeTags.has(t));
+    // text search
+    const mq = !q || [
+      g.funder, g.title, g.focus, g.cat, g.cat2,
+      ...g.tags,
+      ...(g.elig || []),
+      ...(g.inelig || [])
+    ].some(s => s && s.toLowerCase().includes(q));
+    return ms && mt && mq;
+  });
+
+  // Sort: closing/open first, then upcoming, rolling, anticipated, closed
+  const order = {closing:0,open:1,upcoming:2,rolling:3,anticipated:4,closed:5};
+  list.sort((a,b) => {
+    const od = (order[a.status]||5) - (order[b.status]||5);
+    if (od !== 0) return od;
+    if (a.dl && b.dl) return new Date(a.dl) - new Date(b.dl);
+    if (a.dl) return -1;
+    if (b.dl) return 1;
+    return 0;
+  });
+
+  document.getElementById('s-o').textContent = list.filter(g=>g.status==='open').length;
+  document.getElementById('s-c').textContent = list.filter(g=>g.status==='closing').length;
+  document.getElementById('s-t').textContent = list.length;
+  document.getElementById('sh').innerHTML = `Showing <b>${list.length}</b> of <b>${G.length}</b> grants`;
+  document.getElementById('empty').style.display = list.length ? 'none' : 'block';
+
+  // Group by category
+  const catOrder = [
+    '🔄 Live – ANRF 2026','🔄 Live – ICMR',
+    '🇮🇳 India – National','🤝 Bilateral',
+    '🌍 International','🇪🇺 European',
+    '🏭 Pharma Industry','🧬 Rare / Niche'
+  ];
+  const cats = [...new Set(catOrder.filter(c => list.some(g=>g.cat===c)))];
+
+  // live banner
+  const liveHasData = list.some(g=>g.cat==='🔄 Live – ANRF 2026'||g.cat==='🔄 Live – ICMR');
+
+  document.getElementById('root').innerHTML =
+    getLiveBanner() +
+    cats.map(cat => {
+      const items = list.filter(g => g.cat === cat);
+      if (!items.length) return '';
+      return `<div class="cs">
+        <div class="ch">${cat} <span class="ch-count">(${items.length})</span></div>
+        <div class="grid">${items.map(cardHTML).join('')}</div>
+      </div>`;
+    }).join('');
+}
+
+// ══════════════════════════════════════════════════════════
+//  COUNTDOWN TICK (1s interval)
+// ══════════════════════════════════════════════════════════
+function tick() {
+  const now = new Date();
+  G.forEach(g => {
+    if (!g.dl || g.status === 'closed' || g.status === 'upcoming' ||
+        g.status === 'rolling' || g.status === 'anticipated') return;
+    const el = document.getElementById('cd' + g.id);
+    if (!el) return;
+    const end = new Date(g.dl + 'T23:59:59');
+    const diff = end - now;
+    if (diff <= 0) {
+      el.innerHTML = `<div class="cd-msg cd-passed">⏱ Deadline passed</div>`;
+      return;
+    }
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    const col = d<3 ? 'var(--re)' : d<7 ? 'var(--ye)' : 'var(--gr)';
+    ['d','h','m','s'].forEach((k,i) => {
+      const n = document.getElementById(`cd${g.id}${k}`);
+      if (n) { n.textContent = [d,h,m,s][i]; n.style.color = col; }
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+//  LIVE DATA STATE
+// ══════════════════════════════════════════════════════════
+let LIVE_DATA = null;        // null = using embedded static
+let LIVE_STATUS = 'loading'; // 'loading' | 'live' | 'cached'
+let LIVE_LABEL  = 'Loading live data…';
+let ACTIVE_GRANTS = G;       // starts with embedded, replaced by live
+
+function getLiveBanner() {
+  if (LIVE_STATUS === 'loading') {
+    return `<div class="live-section" style="background:#eff6ff;border-color:#bfdbfe;">
+      <span class="live-dot" style="background:#3b82f6;box-shadow:0 0 6px #3b82f6;"></span>
+      <span>⏳ Fetching live grant data…</span>
+    </div>`;
+  }
+  if (LIVE_STATUS === 'live') {
+    return `<div class="live-section" style="background:#f0fdf4;border-color:#bbf7d0;">
+      <span class="live-dot"></span>
+      <span>🟢 <strong>Live data loaded</strong> — ${LIVE_LABEL}
+      &nbsp;|&nbsp;<button onclick="fetchLiveData()" class="refresh-btn" style="font-size:0.68rem;padding:2px 8px;">⟳ Refresh</button>
+      </span>
+    </div>`;
+  }
+  // cached
+  return `<div class="live-section live-warn">
+    <span class="live-dot" style="background:#d97706;box-shadow:0 0 6px #d97706;"></span>
+    <span>⚠ Live fetch unavailable – showing last verified data (Apr 28, 2026).
+    <a href="https://www.icmr.gov.in/call-for-proposals" target="_blank" style="color:#92400e;font-weight:700;">Verify ICMR →</a>
+    &nbsp;|&nbsp;<a href="https://anrfonline.in" target="_blank" style="color:#92400e;font-weight:700;">Verify ANRF →</a>
+    </span>
+  </div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+//  LIVE FETCH
+// ══════════════════════════════════════════════════════════
+async function fetchLiveData() {
+  LIVE_STATUS = 'loading';
+  render();
+
+  try {
+    const resp = await fetch('./grants_live.json?t=' + Date.now(), {
+      cache: 'no-store',
+      signal: AbortSignal.timeout(10000),
+    });
+
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+    const data = await resp.json();
+
+    if (!data.grants || !Array.isArray(data.grants)) {
+      throw new Error('Invalid JSON structure');
+    }
+
+    // Merge: live data for scraped grants, keep embedded for any not in live JSON
+    const liveIds = new Set(data.grants.map(g => String(g.id)));
+    const embeddedOnly = G.filter(g => !liveIds.has(String(g.id)));
+    ACTIVE_GRANTS = [...data.grants, ...embeddedOnly];
+
+    LIVE_STATUS = 'live';
+    LIVE_LABEL  = `Last scraped: <strong>${data.scraped_label || data.scraped_at}</strong>`;
+
+    // Update header stat badge
+    const badge = document.querySelector('.live-badge');
+    if (badge) badge.textContent = `⚡ Live · ${ACTIVE_GRANTS.length} grants`;
+
+    console.log(`Live data loaded: ${data.grants.length} scraped + ${embeddedOnly.length} static`);
+
+  } catch (err) {
+    console.warn('Live fetch failed:', err.message);
+    ACTIVE_GRANTS = G;
+    LIVE_STATUS = 'cached';
+  }
+
+  render();
+  checkUrgent();
+}
+
+// ══════════════════════════════════════════════════════════
+//  PATCH render() TO USE ACTIVE_GRANTS
+// ══════════════════════════════════════════════════════════
+const _origRender = render;
+render = function() {
+  // swap G with ACTIVE_GRANTS temporarily for render
+  const _G = G;
+  // We patch the filter references inline instead
+  const q = document.getElementById('srch').value.toLowerCase().trim();
+
+  let list = ACTIVE_GRANTS.filter(g => {
+    const ms = sf === 'all' || g.status === sf;
+    const mt = activeTags.size === 0 || g.tags.some(t => activeTags.has(t));
+    const mq = !q || [
+      g.funder, g.title, g.focus, g.cat, g.cat2,
+      ...g.tags,
+      ...(g.elig  || []),
+      ...(g.inelig || [])
+    ].some(s => s && s.toLowerCase().includes(q));
+    return ms && mt && mq;
+  });
+
+  const order = {closing:0,open:1,upcoming:2,rolling:3,anticipated:4,closed:5};
+  list.sort((a,b) => {
+    const od = (order[a.status]||5) - (order[b.status]||5);
+    if (od !== 0) return od;
+    if (a.dl && b.dl) return new Date(a.dl) - new Date(b.dl);
+    if (a.dl) return -1;
+    if (b.dl) return 1;
+    return 0;
+  });
+
+  document.getElementById('s-o').textContent = list.filter(g=>g.status==='open').length;
+  document.getElementById('s-c').textContent = list.filter(g=>g.status==='closing').length;
+  document.getElementById('s-t').textContent = list.length;
+  document.getElementById('sh').innerHTML = `Showing <b>${list.length}</b> of <b>${ACTIVE_GRANTS.length}</b> grants`;
+  document.getElementById('empty').style.display = list.length ? 'none' : 'block';
+
+  const catOrder = [
+    '🔄 Live – ANRF 2026','🔄 Live – ICMR',
+    '🇮🇳 India – National','🤝 Bilateral',
+    '🌍 International','🇪🇺 European',
+    '🏭 Pharma Industry','🧬 Rare / Niche'
+  ];
+  const cats = [...new Set(catOrder.filter(c => list.some(g=>g.cat===c)))];
+
+  document.getElementById('root').innerHTML =
+    getLiveBanner() +
+    cats.map(cat => {
+      const items = list.filter(g => g.cat === cat);
+      if (!items.length) return '';
+      return `<div class="cs">
+        <div class="ch">${cat} <span class="ch-count">(${items.length})</span></div>
+        <div class="grid">${items.map(cardHTML).join('')}</div>
+      </div>`;
+    }).join('');
+};
+
+// ══════════════════════════════════════════════════════════
+//  PATCH tick() TO USE ACTIVE_GRANTS
+// ══════════════════════════════════════════════════════════
+const _origTick = tick;
+tick = function() {
+  const now = new Date();
+  ACTIVE_GRANTS.forEach(g => {
+    if (!g.dl || g.status === 'closed' || g.status === 'upcoming' ||
+        g.status === 'rolling' || g.status === 'anticipated') return;
+    const el = document.getElementById('cd' + g.id);
+    if (!el) return;
+    const end = new Date(g.dl + 'T23:59:59');
+    const diff = end - now;
+    if (diff <= 0) {
+      el.innerHTML = `<div class="cd-msg cd-passed">⏱ Deadline passed</div>`;
+      return;
+    }
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    const col = d<3 ? 'var(--re)' : d<7 ? 'var(--ye)' : 'var(--gr)';
+    ['d','h','m','s'].forEach((k,i) => {
+      const n = document.getElementById(`cd${g.id}${k}`);
+      if (n) { n.textContent = [d,h,m,s][i]; n.style.color = col; }
+    });
+  });
+};
+
+// ══════════════════════════════════════════════════════════
+//  INIT — fetch live data first, then render
+// ══════════════════════════════════════════════════════════
+render();       // show embedded data immediately (fast)
+checkUrgent();
+setInterval(tick, 1000);
+tick();
+fetchLiveData(); // async: upgrades to live data when ready
+</script>
+</body>
+</html>

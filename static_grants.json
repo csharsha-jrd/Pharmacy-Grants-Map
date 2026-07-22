@@ -1,0 +1,588 @@
+{
+  "_note": "Manually maintained grants. Status is auto-recomputed from 'dl' on each scraper run. For rolling grants set 'rolling': true. Add new grants here; they merge with scraped ICMR + ANRF data.",
+  "grants": [
+    {
+      "id": "static_001",
+      "funder": "MRC UK (UKRI)",
+      "cat": "🌍 International",
+      "title": "MRC Research Grant – Applicant-Led (Rolling)",
+      "rolling": true,
+      "dl": null,
+      "open_date": "2026-04-07",
+      "dlLabel": "No closing date (rolling from Apr 7, 2026)",
+      "funding": "£400,000 – £2,000,000",
+      "cat2": "Research Grant",
+      "tags": [
+        "International",
+        "Clinical",
+        "Health",
+        "Pharmacy"
+      ],
+      "focus": "Causes & mechanisms of disease; diagnosis, treatment & prevention. Clinical pharmacology, drug safety, pharmacovigilance, cardiac pharmacotherapy all in MRC remit.",
+      "url": "https://www.ukri.org/opportunity/mrc-research-grant-applicant-led/",
+      "source": "ukri.org (verified: open rolling from Apr 7, 2026)",
+      "elig": [
+        "Must be employed by eligible UK research organisation (UK lead required)",
+        "International co-investigators allowed (not as lead PI)",
+        "First interviews: Nov–Dec 2026; decisions Dec 2026"
+      ],
+      "inelig": [
+        "Researchers outside UK as lead applicant",
+        "Uninvited resubmissions of applications submitted after Apr 1 2026"
+      ]
+    },
+    {
+      "id": "static_002",
+      "funder": "MRC UK (UKRI)",
+      "cat": "🌍 International",
+      "title": "MRC New Investigator Research Grant – Applicant-Led",
+      "rolling": true,
+      "dl": null,
+      "open_date": "2026-04-07",
+      "dlLabel": "No closing date (rolling from Apr 7, 2026)",
+      "funding": "Up to £400,000",
+      "cat2": "Early Career Grant",
+      "tags": [
+        "International",
+        "Clinical",
+        "Health",
+        "Pharmacy",
+        "Fellowship"
+      ],
+      "focus": "First independent research for early-career UK health researchers. Pharmacotherapy, clinical pharmacy, drug safety all eligible under MRC remit.",
+      "url": "https://www.ukri.org/opportunity/mrc-new-investigator-research-grant-applicant-led/",
+      "source": "ukri.org (verified open rolling)",
+      "elig": [
+        "Early-career researchers at eligible UK institution",
+        "Must not have held independent PI-level grant >£400k",
+        "Health/biomedical focus within MRC remit"
+      ],
+      "inelig": [
+        "Senior PIs with prior large independent grants",
+        "Non-UK researchers as lead applicant"
+      ]
+    },
+    {
+      "id": "static_003",
+      "funder": "NIH Fogarty (USA)",
+      "cat": "🌍 International",
+      "title": "Global Infectious Disease Research Training (D43)",
+      "dl": "2026-08-06",
+      "open_date": null,
+      "dlLabel": "Aug 6, 2026",
+      "funding": "USD 230,000/year for up to 5 years",
+      "cat2": "Research Training Grant",
+      "tags": [
+        "International",
+        "Clinical",
+        "Pharmacy",
+        "Fellowship",
+        "Health"
+      ],
+      "focus": "Infectious disease research training in LMICs. AMR pharmacotherapy, HIV/TB drug treatment, clinical trial capacity building. India fully eligible.",
+      "url": "https://www.fic.nih.gov/Programs/Pages/infectious-disease.aspx",
+      "source": "fic.nih.gov / grants.nih.gov PAR-24-174 (verified Aug 6, 2026)",
+      "elig": [
+        "Universities/research institutions in LMICs (India fully eligible)",
+        "US partner institution required",
+        "LOI due July 6, 2026 (30 days before application)"
+      ],
+      "inelig": [
+        "HIV/AIDS research (separate Fogarty programme)",
+        "Projects without US institutional partner"
+      ]
+    },
+    {
+      "id": "static_004",
+      "funder": "NIH Fogarty (USA)",
+      "cat": "🌍 International",
+      "title": "Emerging Global Leader Award (K43)",
+      "dl": "2026-12-03",
+      "open_date": null,
+      "dlLabel": "Dec 3, 2026",
+      "funding": "~USD 100,000–250,000/year for 5 years",
+      "cat2": "Career Development Award",
+      "tags": [
+        "International",
+        "Fellowship",
+        "Health",
+        "Clinical",
+        "Pharmacy"
+      ],
+      "focus": "Support early-career LMIC researchers toward independence. Clinical pharmacy, pharmacovigilance, drug safety, neurology pharmacotherapy all eligible.",
+      "url": "https://www.fic.nih.gov/Funding/Pages/Fogarty-Funding-Opps.aspx",
+      "source": "fic.nih.gov (verified Dec 3, 2026 deadline)",
+      "elig": [
+        "Early-career researchers based in LMICs (India eligible)",
+        "Confirmed US mentor and partner institution required",
+        "PhD or MD/equivalent required"
+      ],
+      "inelig": [
+        "Senior investigators (>10 years post-doctorate)",
+        "Researchers without confirmed US mentor"
+      ]
+    },
+    {
+      "id": "static_005",
+      "funder": "NIH Fogarty (USA)",
+      "cat": "🌍 International",
+      "title": "LAUNCHing Leaders for U.S. Global Health Research (D43)",
+      "dl": "2026-05-25",
+      "open_date": null,
+      "dlLabel": "May 25, 2026",
+      "funding": "TBD per training programme",
+      "cat2": "Research Leadership Training",
+      "tags": [
+        "International",
+        "Fellowship",
+        "Health",
+        "Clinical",
+        "Pharmacy"
+      ],
+      "focus": "Global health research leadership training in LMICs. Pharmacy researchers in global health, clinical trials, and implementation science eligible.",
+      "url": "https://www.fic.nih.gov/Funding/Pages/Fogarty-Funding-Opps.aspx",
+      "source": "fic.nih.gov (verified May 25, 2026 deadline)",
+      "elig": [
+        "Universities in LMICs (India eligible)",
+        "US partner institution required",
+        "Focus on training health research leaders"
+      ],
+      "inelig": [
+        "Single-country proposals without US partner"
+      ]
+    },
+    {
+      "id": "static_006",
+      "funder": "Merck Group (Germany)",
+      "cat": "🏭 Pharma Industry",
+      "title": "Merck Research Grants 2026 – Open Innovation",
+      "dl": "2026-08-31",
+      "open_date": null,
+      "dlLabel": "Aug 31, 2026",
+      "funding": "EUR 100k–250k/year for 2–3 years (4 grants in 2026)",
+      "cat2": "Industry Research Grant",
+      "tags": [
+        "International",
+        "Clinical",
+        "Pharmacy",
+        "Industry",
+        "Health"
+      ],
+      "focus": "2026 focus: (1) In-vitro models for neuroinflammatory disease therapies – EUR 250k/yr (pharmacy-relevant). (2) AI in cell culture media & bioprocess development. (3) Condensate-based cell-free screening assays. Deep-dive workshop Nov/Dec 2026.",
+      "url": "https://www.emdgroup.com/en/research/open-innovation/research-grants.html",
+      "source": "emdgroup.com (verified: Aug 31, 2026 deadline · 2026 topics confirmed)",
+      "elig": [
+        "Researchers globally, including India – academic and industry",
+        "Neuroinflammatory disease drug discovery directly eligible",
+        "First stage: non-confidential abstract only; shortlist invited to deep-dive workshop"
+      ],
+      "inelig": [
+        "Projects outside Merck's 2026 defined thematic areas"
+      ]
+    },
+    {
+      "id": "static_007",
+      "funder": "Pfizer Global Medical Grants",
+      "cat": "🏭 Pharma Industry",
+      "title": "Pfizer Independent Medical Education & Competitive Grants 2026",
+      "rolling": true,
+      "dl": null,
+      "open_date": null,
+      "dlLabel": "Rolling (quarterly submission windows)",
+      "funding": "USD 50,000–500,000 (varies by programme area)",
+      "cat2": "Industry Research / Education Grant",
+      "tags": [
+        "International",
+        "Clinical",
+        "Pharmacy",
+        "Industry",
+        "Health",
+        "Fellowship"
+      ],
+      "focus": "Medical education and disease-area research aligned with Pfizer therapeutic areas: cardiology, oncology, rare disease, anti-infectives, CNS. Clinical pharmacy education grants available.",
+      "url": "https://www.pfizer.com/grants",
+      "source": "pfizer.com/grants (rolling – quarterly windows)",
+      "elig": [
+        "Non-profit academic, hospital and medical institutions globally (India eligible)",
+        "Must align with Pfizer's defined therapeutic priorities",
+        "Pharmacy schools and clinical research programmes eligible"
+      ],
+      "inelig": [
+        "For-profit entities",
+        "Proposals outside Pfizer's therapeutic focus areas"
+      ]
+    },
+    {
+      "id": "static_008",
+      "funder": "WHO / TDR",
+      "cat": "🌍 International",
+      "title": "TDR Impact Grants – Infectious Diseases of Poverty",
+      "rolling": true,
+      "dl": null,
+      "open_date": null,
+      "dlLabel": "Rolling cycles (check tdr.who.int for current open round)",
+      "funding": "Up to USD 20,000",
+      "cat2": "Implementation Research Grant",
+      "tags": [
+        "International",
+        "Clinical",
+        "Pharmacy",
+        "Health",
+        "Public Health"
+      ],
+      "focus": "Implementation research on infectious diseases of poverty in LMICs. Pharmacotherapy of NTDs, antibiotic stewardship, drug access, treatment adherence research.",
+      "url": "https://tdr.who.int/grants",
+      "source": "tdr.who.int (rolling – verify current open cycle)",
+      "elig": [
+        "Researchers in LMICs (India – check cycle-specific regional eligibility)",
+        "Must address infectious diseases of poverty",
+        "Pharmacy researchers addressing drug access or adherence eligible"
+      ],
+      "inelig": [
+        "High-income country researchers as PI"
+      ]
+    },
+    {
+      "id": "static_009",
+      "funder": "World Bank / Pandemic Fund",
+      "cat": "🌍 International",
+      "title": "4th Call for Proposals – Pandemic Prevention, Preparedness & Response",
+      "dl": "2027-03-31",
+      "open_date": "2026-01-01",
+      "dlLabel": "Mar 31, 2027",
+      "funding": "Multi-million USD (institutional grants)",
+      "cat2": "Pandemic Health",
+      "tags": [
+        "International",
+        "Health",
+        "Pharmacy",
+        "Public Health"
+      ],
+      "focus": "Pandemic PPR in LMICs. Pharmaceutical preparedness, essential medicine stockpiling, vaccine logistics, AMR pandemic risk all eligible.",
+      "url": "https://thepandemicfund.org/call-for-proposals",
+      "source": "thepandemicfund.org (4th call verified open)",
+      "elig": [
+        "Governments and eligible institutions in LMICs",
+        "Multi-country proposals strongly preferred",
+        "Health ministries and academic institutions as implementing partners"
+      ],
+      "inelig": [
+        "For-profit private entities as lead applicant",
+        "High-income country-only proposals"
+      ]
+    },
+    {
+      "id": "static_010",
+      "funder": "CIHR – GACD (Canada)",
+      "cat": "🌍 International",
+      "title": "Team Grant – GACD Implementation Science for NCDs",
+      "dl": "2026-09-01",
+      "open_date": null,
+      "dlLabel": "Stage 1 ~Sep 2026",
+      "funding": "Variable (multi-year team grant, CAD millions)",
+      "cat2": "Implementation Science",
+      "tags": [
+        "International",
+        "Clinical",
+        "Health",
+        "Pharmacy",
+        "Public Health"
+      ],
+      "focus": "NCD implementation science: cardiovascular disease, diabetes, cancer, mental health in LMICs. Pharmacotherapy implementation, medication adherence, drug utilisation.",
+      "url": "https://cihr-irsc.gc.ca/e/54557.html",
+      "source": "cihr-irsc.gc.ca (verified)",
+      "elig": [
+        "Canadian PI required as lead",
+        "LMIC partnerships mandatory",
+        "Indian researchers welcome as co-investigators/LMIC partners"
+      ],
+      "inelig": [
+        "Teams without LMIC partner",
+        "Basic science-only projects"
+      ]
+    },
+    {
+      "id": "static_011",
+      "funder": "DBT / Wellcome India Alliance",
+      "cat": "🧬 Rare / Niche",
+      "title": "India Alliance Fellowships – Phase III (Early/Intermediate/Senior)",
+      "rolling": false,
+      "dl": null,
+      "open_date": null,
+      "dlLabel": "Next cycle TBD – monitor indiaalliance.org",
+      "funding": "Early ₹1.5Cr | Intermediate ₹2Cr | Senior ₹3Cr",
+      "cat2": "Research Fellowship",
+      "tags": [
+        "India",
+        "International",
+        "Clinical",
+        "Fellowship",
+        "Health",
+        "Pharmacy",
+        "Rare"
+      ],
+      "focus": "Basic biomedical, clinical, and public health research. All career stages. Pharmacotherapy, drug safety, clinical trials, pharmacovigilance all in remit.",
+      "url": "https://www.indiaalliance.org",
+      "source": "indiaalliance.org (monitor for next cycle)",
+      "elig": [
+        "Early Fellowship: ≤3 years post-PhD",
+        "Intermediate: ≤7 years post-PhD",
+        "Senior: established PIs with independent research track record",
+        "Indian national or based in India"
+      ],
+      "inelig": [
+        "Researchers holding another major fellowship simultaneously",
+        "Non-biomedical projects"
+      ]
+    },
+    {
+      "id": "static_012",
+      "funder": "HFSP",
+      "cat": "🧬 Rare / Niche",
+      "title": "HFSP International Research Grants 2027 (Pre-Proposals ~Oct 2026)",
+      "dl": "2026-10-01",
+      "open_date": null,
+      "dlLabel": "~Oct 2026 (pre-proposals)",
+      "funding": "~USD 450k/3yr (Young Investigator) | ~USD 900k/3yr (Research Grant)",
+      "cat2": "Interdisciplinary Research",
+      "tags": [
+        "International",
+        "Health",
+        "Clinical",
+        "Bilateral"
+      ],
+      "focus": "Interdisciplinary life sciences research by international teams. Neuropharmacology, systems pharmacology, computational drug science eligible.",
+      "url": "https://www.hfsp.org",
+      "source": "hfsp.org (2027 cycle pre-proposals expected Oct 2026)",
+      "elig": [
+        "International teams from min. 2 different countries",
+        "Indian PIs eligible as team members",
+        "Genuinely interdisciplinary projects required"
+      ],
+      "inelig": [
+        "Single-country teams",
+        "Standard clinical projects without interdisciplinary novelty"
+      ]
+    },
+    {
+      "id": "static_013",
+      "funder": "ICSSR – DFG (Indo-German)",
+      "cat": "🤝 Bilateral",
+      "title": "Indo-German Joint Research Projects – Social Health Sciences",
+      "rolling": true,
+      "dl": null,
+      "open_date": null,
+      "dlLabel": "Rolling 2026 – monitor icssr.org",
+      "funding": "TBD per project",
+      "cat2": "Bilateral Social/Health Research",
+      "tags": [
+        "India",
+        "International",
+        "Bilateral",
+        "Health",
+        "Public Health",
+        "Clinical"
+      ],
+      "focus": "Social determinants of health; interdisciplinary health-social research; public health policy. Health economics, pharmacoeconomics, health equity eligible.",
+      "url": "https://icssr.org",
+      "source": "icssr.org (rolling scheme)",
+      "elig": [
+        "Indian social science/health researchers at ICSSR-affiliated institution",
+        "German co-PI from DFG-eligible institution required",
+        "Joint application from both sides required"
+      ],
+      "inelig": [
+        "Applications without German co-PI",
+        "Pure clinical science without social science component"
+      ]
+    },
+    {
+      "id": "static_014",
+      "funder": "ICMR – DFG (Indo-German)",
+      "cat": "🤝 Bilateral",
+      "title": "Indo-German Joint Medical Research (Next Call – Theme TBD)",
+      "rolling": false,
+      "dl": null,
+      "open_date": null,
+      "dlLabel": "TBD – monitor icmr.gov.in & dfg.de",
+      "funding": "TBD (bilateral, aligned with national budgets)",
+      "cat2": "Bilateral Medical Research",
+      "tags": [
+        "India",
+        "International",
+        "Bilateral",
+        "Clinical",
+        "Pharmacy",
+        "Health"
+      ],
+      "focus": "Medical sciences joint research. Last theme: Toxicology (2022). New theme expected – pharmacovigilance, AMR, NCDs possible. Pharmacy/clinical research eligible.",
+      "url": "https://www.icmr.gov.in/call-for-proposals",
+      "source": "icmr.gov.in / dfg.de (next call anticipated – set alert)",
+      "elig": [
+        "Indian researchers at ICMR-affiliated institutions",
+        "German co-PI at DFG-eligible institution required",
+        "Medical/health sciences focus; clinical pharmacy eligible"
+      ],
+      "inelig": [
+        "Applications without confirmed German partner"
+      ]
+    },
+    {
+      "id": "static_015",
+      "funder": "DBT / BIRAC",
+      "cat": "🇮🇳 India – National",
+      "title": "Bio-AI Joint Call: High Performance Biomanufacturing (BioE3 Policy)",
+      "dl": "2026-06-30",
+      "open_date": null,
+      "dlLabel": "Jun 30, 2026",
+      "funding": "Amount TBD (competitive multi-year)",
+      "cat2": "Biotech / AI / Pharma",
+      "tags": [
+        "India",
+        "Health",
+        "Pharmacy",
+        "Industry"
+      ],
+      "focus": "AI-driven biomanufacturing, drug synthesis, biosimilars, sustainable health product development. Drug delivery systems, biosimilar development, precision formulation directly eligible.",
+      "url": "https://birac.nic.in/cfp.php",
+      "source": "birac.nic.in (verified Apr 2026)",
+      "elig": [
+        "Indian institutions, national research labs, pharma startups",
+        "Biotech/pharma companies as co-applicants welcome",
+        "Must align with BioE3 biomanufacturing policy areas"
+      ],
+      "inelig": [
+        "Foreign-only applicants without Indian institutional partner"
+      ]
+    },
+    {
+      "id": "static_016",
+      "funder": "Gates Foundation / Grand Challenges",
+      "cat": "🌍 International",
+      "title": "Grand Challenges Explorations – Fall 2026 Round (Anticipated)",
+      "rolling": false,
+      "dl": null,
+      "open_date": null,
+      "dlLabel": "Fall 2026 – anticipated (Spring 2026 closed Apr 28, 2026)",
+      "funding": "USD 100,000 for 18 months (Phase I); up to USD 1M follow-on (Phase II)",
+      "cat2": "Innovation Grant – Global Health",
+      "tags": [
+        "International",
+        "Clinical",
+        "Pharmacy",
+        "Health",
+        "Public Health"
+      ],
+      "focus": "High-risk, high-reward innovations in global health and development. Two-page application, no preliminary data required. Past topics: diagnostics, drug delivery, AMR, nutrition, infectious disease treatment. Pharmacy innovation, point-of-care drug monitoring, novel drug delivery all potentially eligible.",
+      "url": "https://gcgh.grandchallenges.org/grant-opportunities",
+      "source": "gcgh.grandchallenges.org (Spring 2026 closed Apr 28; Fall 2026 anticipated – sign up for alerts)",
+      "elig": [
+        "Researchers globally including India — all countries eligible",
+        "Individuals, institutions, startups, and NGOs all eligible",
+        "Two-page application only — no preliminary data required",
+        "Grand Challenges India (DBT + BIRAC + Gates + Wellcome) also available separately for Indian applicants",
+        "Fall round typically opens Sep–Oct each year"
+      ],
+      "inelig": [
+        "Incremental or conventional research approaches (must be high-risk/high-reward)",
+        "Projects outside Gates Foundation disease and development priorities"
+      ]
+    },
+    {
+      "id": "static_017",
+      "funder": "Grand Challenges India (DBT / BIRAC / Gates / Wellcome)",
+      "cat": "🇮🇳 India – National",
+      "title": "Grand Challenges India – Next Round (Anticipated 2026)",
+      "rolling": false,
+      "dl": null,
+      "open_date": null,
+      "dlLabel": "Next India round TBD – monitor birac.nic.in & gcgh.grandchallenges.org",
+      "funding": "USD 100,000 (Phase I); up to USD 1M (Phase II)",
+      "cat2": "Innovation Grant – India",
+      "tags": [
+        "India",
+        "International",
+        "Clinical",
+        "Pharmacy",
+        "Health",
+        "Bilateral"
+      ],
+      "focus": "Indian-specific Grand Challenges rounds co-funded by DBT, BIRAC, Gates Foundation, and Wellcome Trust. Innovations in health, diagnostics, drug delivery, infectious disease, nutrition. Indian pharmacy researchers directly eligible.",
+      "url": "https://birac.nic.in/cfp.php",
+      "source": "birac.nic.in / gcgh.grandchallenges.org (Grand Challenges India – monitor both portals)",
+      "elig": [
+        "Indian researchers at recognised institutions (India-specific round)",
+        "Individuals, startups, academic institutions all eligible",
+        "Two-page application, no preliminary data required",
+        "Must address health innovation challenges relevant to India/LMICs",
+        "Pharmacy innovation, affordable diagnostics, drug delivery directly eligible"
+      ],
+      "inelig": [
+        "Projects outside Gates Foundation / DBT health innovation priorities",
+        "Incremental research (must propose genuinely novel approach)"
+      ]
+    },
+    {
+      "id": "static_018",
+      "funder": "EDCTP3 (Europe–Africa)",
+      "cat": "🧬 Rare / Niche",
+      "title": "EDCTP3 2026 Open Calls – TB, HIV, LRTIs, Pharmacovigilance & Climate/Health",
+      "rolling": false,
+      "dl": "2026-09-17",
+      "open_date": "2026-03-04",
+      "dlLabel": "Sep 17, 2026 (RIA full proposals) | Aug 31, 2026 (CSA single-stage)",
+      "funding": "EUR 147M+ total pool across 6 topics",
+      "cat2": "Clinical Trial / Capacity Building",
+      "tags": [
+        "International",
+        "Clinical",
+        "Pharmacy",
+        "Health",
+        "Rare"
+      ],
+      "focus": "2026 topics: (1) TB drug development for adults & children – Africa. (2) Prevention & treatment of lower respiratory tract infections (LRTIs). (3) HIV co-infections & co-morbidities management. (4) Climate & health in sub-Saharan Africa. (5) Ethics, regulatory & PHARMACOVIGILANCE training networks (CSA – directly relevant). (6) Digital innovation & AI in integrated healthcare. Stage 1 closed Mar 4; full proposals Sep 17.",
+      "url": "https://www.global-health-edctp3.europa.eu/funding/calls-for-proposals",
+      "source": "global-health-edctp3.europa.eu (verified: full proposals Sep 17, 2026; EUR 147M pool)",
+      "elig": [
+        "Research consortia with mandatory African partner institution",
+        "European/Horizon-associated country institutions as lead",
+        "PHARMACOVIGILANCE training networks (CSA topic 5) — directly relevant to JSS pharmacy",
+        "Regulatory science, ethics, and drug safety capacity building eligible",
+        "Must involve clinical trial or implementation study in sub-Saharan Africa"
+      ],
+      "inelig": [
+        "Projects without African partner institution",
+        "Basic science without translational/clinical component",
+        "Stage 1 deadline (Mar 4, 2026) has passed — only full proposals invited now"
+      ]
+    },
+    {
+      "id": "static_019",
+      "funder": "ADB – NOTE: Not Applicable for Academic Researchers",
+      "cat": "🌍 International",
+      "title": "⚠ Asian Development Bank (ADB) – Sovereign Grants Only (Not for Researchers)",
+      "rolling": false,
+      "dl": null,
+      "open_date": null,
+      "dlLabel": "N/A – ADB grants go to governments, not academic researchers",
+      "funding": "N/A for individual researchers",
+      "cat2": "ℹ️ Information Note",
+      "tags": [
+        "International",
+        "Public Health"
+      ],
+      "focus": "ADB provides grants to governments of developing member countries, not directly to academic researchers or universities. The government manages ADB grants and issues sub-calls for implementing firms. Indian pharmacy researchers CANNOT apply directly to ADB. If interested in ADB-funded health projects, contact India's Ministry of Health or state health departments that receive ADB financing.",
+      "url": "https://www.adb.org/what-we-do/funds",
+      "source": "adb.org (verified – sovereign grants only, not open to direct academic applications)",
+      "elig": [
+        "Government ministries and sovereign bodies of ADB developing member countries only",
+        "Academic institutions may be sub-contracted by governments for specific ADB-funded project components"
+      ],
+      "inelig": [
+        "Individual academic researchers applying directly",
+        "Universities and research institutions as lead applicants",
+        "JSS College of Pharmacy cannot apply directly to ADB"
+      ]
+    }
+  ]
+}
