@@ -1,18 +1,16 @@
 {
-  "scraped_at": "2026-10-01T12:52:06+05:30",
-  "scraped_label": "01 Oct 2026, 12:52 PM IST",
+  "scraped_at": "2026-10-02T12:40:09+05:30",
+  "scraped_label": "02 Oct 2026, 12:40 PM IST",
   "total": 28,
   "by_status": {
-    "closed": 11,
-    "closing": 2,
+    "closed": 12,
+    "closing": 1,
     "open": 3,
     "upcoming": 1,
     "rolling": 6,
     "anticipated": 5
   },
-  "urgent_grants": [
-    "HFSP International Research Grants 2027 (Pre-Proposals ~Oct 2026)"
-  ],
+  "urgent_grants": [],
   "grants": [
     {
       "id": "anrf_scraped_1",
@@ -22,7 +20,7 @@
       "status": "closed",
       "dl": "2026-02-10",
       "dlLabel": "Feb 10, 2026 🚨 URGENT",
-      "days_remaining": -233,
+      "days_remaining": -234,
       "funding": "Amount as per ANRF norms (multi-year)",
       "cat2": "Senior Fellowship",
       "tags": [
@@ -32,7 +30,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Very senior Indian scientists with outstanding contributions",
         "Must hold regular position at recognised Indian institution"
@@ -42,7 +40,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "anrf_scraped_2",
@@ -52,7 +50,7 @@
       "status": "closed",
       "dl": "2026-02-17",
       "dlLabel": "Feb 17, 2026 🚨 URGENT",
-      "days_remaining": -226,
+      "days_remaining": -227,
       "funding": "Amount as per ANRF norms (multi-year)",
       "cat2": "Post-Doctoral Fellowship",
       "tags": [
@@ -64,7 +62,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Indian PhD holders within 2 years of degree award",
         "Age ≤35 years (relaxation for SC/ST/OBC/Women)",
@@ -75,7 +73,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "anrf_scraped_3",
@@ -85,7 +83,7 @@
       "status": "closed",
       "dl": "2026-05-08",
       "dlLabel": "May 8, 2026 🚨 URGENT",
-      "days_remaining": -146,
+      "days_remaining": -147,
       "funding": "Amount as per ANRF norms (multi-year)",
       "cat2": "Research Grant",
       "tags": [
@@ -96,7 +94,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Indian researchers at UGC/AICTE-recognised institutions",
         "PhD qualification mandatory for PI",
@@ -108,7 +106,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "anrf_scraped_4",
@@ -118,7 +116,7 @@
       "status": "closed",
       "dl": "2026-05-08",
       "dlLabel": "May 8, 2026 🚨 URGENT",
-      "days_remaining": -146,
+      "days_remaining": -147,
       "funding": "Amount as per ANRF norms (multi-year)",
       "cat2": "Research Grant",
       "tags": [
@@ -129,7 +127,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Indian researchers at UGC/AICTE-recognised institutions",
         "PhD qualification mandatory for PI",
@@ -141,7 +139,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "anrf_scraped_5",
@@ -151,7 +149,7 @@
       "status": "closed",
       "dl": "2026-07-31",
       "dlLabel": "Jul 31, 2026 🚨 URGENT",
-      "days_remaining": -62,
+      "days_remaining": -63,
       "funding": "Amount as per ANRF norms (multi-year)",
       "cat2": "Senior Fellowship",
       "tags": [
@@ -161,7 +159,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Eminent senior Indian scientists with international recognition",
         "All disciplines including biomedical, pharmacy, clinical research"
@@ -171,7 +169,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "anrf_scraped_6",
@@ -181,7 +179,7 @@
       "status": "closing",
       "dl": "2026-10-15",
       "dlLabel": "Oct 15, 2026",
-      "days_remaining": 14,
+      "days_remaining": 13,
       "funding": "Amount as per ANRF norms (multi-year)",
       "cat2": "Research Grant",
       "tags": [
@@ -192,7 +190,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Indian researchers at UGC/AICTE-recognised institutions",
         "PhD qualification mandatory for PI",
@@ -204,7 +202,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "anrf_scraped_7",
@@ -214,7 +212,7 @@
       "status": "open",
       "dl": "2026-11-03",
       "dlLabel": "Nov 3, 2026",
-      "days_remaining": 33,
+      "days_remaining": 32,
       "funding": "Amount as per ANRF norms (multi-year)",
       "cat2": "Inclusivity Grant",
       "tags": [
@@ -225,7 +223,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Indian researchers at UGC/AICTE-recognised institutions",
         "PhD qualification mandatory for PI",
@@ -237,7 +235,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "anrf_scraped_8",
@@ -247,7 +245,7 @@
       "status": "upcoming",
       "dl": "2026-12-02",
       "dlLabel": "Dec 2, 2026",
-      "days_remaining": 62,
+      "days_remaining": 61,
       "funding": "Amount as per ANRF norms (multi-year)",
       "cat2": "Early Career Grant",
       "tags": [
@@ -259,7 +257,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Indian researchers at UGC/AICTE-recognised institutions",
         "PhD qualification mandatory for PI",
@@ -271,7 +269,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "anrf_scraped_9",
@@ -293,7 +291,7 @@
       ],
       "focus": "Advanced research across all disciplines including pharmacy, clinical research, pharmacovigilance, biomedical, and neuroscience. Check anrfonline.in for full call details.",
       "url": "https://anrfonline.in",
-      "source": "anrfonline.in / phdtalks.org (verified 01 Oct 2026, 12:52 PM IST)",
+      "source": "anrfonline.in / phdtalks.org (verified 02 Oct 2026, 12:40 PM IST)",
       "elig": [
         "Indian researchers currently working outside India",
         "Age ≤40 years at time of application",
@@ -304,7 +302,7 @@
         "Private college faculty without institutional recognition"
       ],
       "scraped": true,
-      "scraped_at": "2026-10-01T12:52:06+05:30"
+      "scraped_at": "2026-10-02T12:40:09+05:30"
     },
     {
       "id": "static_001",
@@ -401,7 +399,7 @@
         "Projects without US institutional partner"
       ],
       "status": "closed",
-      "days_remaining": -56
+      "days_remaining": -57
     },
     {
       "id": "static_004",
@@ -433,7 +431,7 @@
         "Researchers without confirmed US mentor"
       ],
       "status": "open",
-      "days_remaining": 63
+      "days_remaining": 62
     },
     {
       "id": "static_005",
@@ -464,7 +462,7 @@
         "Single-country proposals without US partner"
       ],
       "status": "closed",
-      "days_remaining": -129
+      "days_remaining": -130
     },
     {
       "id": "static_006",
@@ -495,7 +493,7 @@
         "Projects outside Merck's 2026 defined thematic areas"
       ],
       "status": "closed",
-      "days_remaining": -31
+      "days_remaining": -32
     },
     {
       "id": "static_007",
@@ -592,7 +590,7 @@
         "High-income country-only proposals"
       ],
       "status": "open",
-      "days_remaining": 181
+      "days_remaining": 180
     },
     {
       "id": "static_010",
@@ -624,7 +622,7 @@
         "Basic science-only projects"
       ],
       "status": "closed",
-      "days_remaining": -30
+      "days_remaining": -31
     },
     {
       "id": "static_011",
@@ -690,8 +688,8 @@
         "Single-country teams",
         "Standard clinical projects without interdisciplinary novelty"
       ],
-      "status": "closing",
-      "days_remaining": 0
+      "status": "closed",
+      "days_remaining": -1
     },
     {
       "id": "static_013",
@@ -788,7 +786,7 @@
         "Foreign-only applicants without Indian institutional partner"
       ],
       "status": "closed",
-      "days_remaining": -93
+      "days_remaining": -94
     },
     {
       "id": "static_016",
@@ -895,7 +893,7 @@
         "Stage 1 deadline (Mar 4, 2026) has passed — only full proposals invited now"
       ],
       "status": "closed",
-      "days_remaining": -14
+      "days_remaining": -15
     },
     {
       "id": "static_019",
